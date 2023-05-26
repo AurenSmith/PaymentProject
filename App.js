@@ -2,7 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, PanResponder, Animated } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+
+// assets or other files
 import { styles } from "./Style";
+import CardAsset from "./CardAsset";
 
 const MyButton = ({ onPress }) => {
   return (
@@ -23,56 +26,22 @@ const LiveChatButton = ({ onPress }) => {
 export default function App() {
   const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
-  const sidebarAnimation = useRef(new Animated.Value(0)).current;
-  const liveChatAnimation = useRef(new Animated.Value(0)).current;
 
   const handleSidebarButtonPress = () => {
     setShowAdditionalObject(true);
-    Animated.timing(sidebarAnimation, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
   };
 
   const handleSidebarClose = () => {
-    Animated.timing(sidebarAnimation, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: false,
-    }).start(() => {
-      setShowAdditionalObject(false);
-    });
+    setShowAdditionalObject(false);
   };
 
   const handleLiveChatButtonPress = () => {
     setShowLiveChat(true);
-    Animated.timing(liveChatAnimation, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
   };
 
   const handleLiveChatClose = () => {
-    Animated.timing(liveChatAnimation, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: false,
-    }).start(() => {
-      setShowLiveChat(false);
-    });
+    setShowLiveChat(false);
   };
-
-  const sidebarTranslateX = sidebarAnimation.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-300, 0], // Adjust the value based on your sidebar width
-  });
-
-  const liveChatHeight = liveChatAnimation.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 400], // Adjust the value based on your liveChat expanded height
-  });
 
   const panResponder = useRef(
     PanResponder.create({
@@ -88,50 +57,65 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      {/* open side bar button */}
       <MyButton onPress={handleSidebarButtonPress} />
 
+      {/* side bar asset */}
       {showAdditionalObject && (
-        <Animated.View
+        <View
           style={[
             styles.sidebar,
             {
-              transform: [{ translateX: sidebarTranslateX }],
+              transform: [{ translateX: 0}],
             },
           ]}
           {...panResponder.panHandlers}
         >
-          {/* Add content for the sidebar */}
-        </Animated.View>
+          {/* add content for the sidebar */}
+          <View style={styles.sidebar}></View>
+        </View>
       )}
 
+      {/* open live chat button */}
       <LiveChatButton onPress={handleLiveChatButtonPress} />
 
+      {/* live chat asset */}
       {showLiveChat && (
-        <Animated.View
+        <View 
           style={[
             styles.liveChat,
             {
-              height: liveChatHeight,
+              height: 400,
             },
           ]}
         >
+          {/* close live chat button */}
           <TouchableOpacity onPress={handleLiveChatClose} style={styles.liveChatCloseButton}>
             <FontAwesome name="times-circle-o" size={28} style={styles.liveChatCloseButtonText} />
           </TouchableOpacity>
+
+          {/* top bar */}
           <View style={styles.liveTopbar}></View>
 
+          {/* middle content section */}
           <View style={styles.liveContent}>
             <Text style={styles.liveChatText}>Live Chat Content</Text>
           </View>
 
+          {/* bottom bar */}
           <View style={styles.liveBottombar}>
             <Text style={styles.liveMessage}>Message</Text>
             <View style={styles.sendContainer}>
               <FontAwesome name="paper-plane" size={20} style={styles.liveSend} />
             </View>
           </View>
-        </Animated.View>
+        </View>
       )}
+
+      {/* card asset */}
+      <View style={styles.myCard}>
+        <CardAsset />
+      </View>
 
       <StatusBar style="auto" />
     </View>

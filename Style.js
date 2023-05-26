@@ -124,6 +124,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
+  myCard: {
+    position: 'absolute',
+    top: 175,
+    backgroundColor: '#737373',
+    width: 315,
+    height: 200,
+    borderRadius: 15,
+  },
 });
 
 export { styles };
