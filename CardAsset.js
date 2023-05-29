@@ -21,8 +21,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'left',
     padding: 24,
-    width: '100%',
-    height: '100%',
+    width: 325,
+    height: 200,
+    margin: 0,
+    backgroundColor: '#737373',
+    borderRadius: 20,
+    margin: 25,
+    marginBottom: 0,
   },
   myTitle: {
     margin: 5,
