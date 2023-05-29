@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, PanResponder, Animated } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, PanResponder, Animated, ScrollView } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -26,6 +26,17 @@ const LiveChatButton = ({ onPress }) => {
 export default function App() {
   const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
+
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const scrollViewRef = useRef(null);
+
+  const handleRadioPress = (index) => {
+    setActiveCardIndex(index);
+    scrollViewRef.current?.scrollTo({
+      x: index * 325, 
+      animated: true,
+    });
+  };
 
   const handleSidebarButtonPress = () => {
     setShowAdditionalObject(true);
@@ -113,8 +124,48 @@ export default function App() {
       )}
 
       {/* card asset */}
-      <View style={styles.myCard}>
-        <CardAsset />
+      <View style={styles.cards}>
+        <ScrollView 
+          ref={scrollViewRef}
+          contentContainerStyle={styles.myCard} 
+          horizontal={true}
+          pagingEnabled={true}
+          onMomentumScrollEnd={(event) => {
+            const pageIndex = Math.round(
+              event.nativeEvent.contentOffset.x / 325
+            );
+            setActiveCardIndex(pageIndex);
+          }}
+        >
+          <CardAsset />
+          <CardAsset />
+          <CardAsset />
+        </ScrollView>
+
+        {/* radio buttons container */}
+        <View style={styles.cardButtons}>
+          <TouchableOpacity 
+            style={[
+              styles.cardRadio,
+              activeCardIndex === 0 && styles.radioActive,
+            ]}
+            onPress={() => handleRadioPress(0)}
+          ></TouchableOpacity>
+          <TouchableOpacity 
+            style={[
+              styles.cardRadio,
+              activeCardIndex === 1 && styles.radioActive,
+            ]}
+            onPress={() => handleRadioPress(1)}
+          ></TouchableOpacity>
+          <TouchableOpacity 
+            style={[
+              styles.cardRadio,
+              activeCardIndex === 2 && styles.radioActive,
+            ]}
+            onPress={() => handleRadioPress(2)}
+          ></TouchableOpacity>
+        </View>
       </View>
 
       <StatusBar style="auto" />
