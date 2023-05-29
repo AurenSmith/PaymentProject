@@ -166,6 +166,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     margin: 15,
   },
+  expandedCard: {
+    position: 'absolute',
+    height: 592,
+    top: 200,
+    left: 25,
+    right: 25,
+    backgroundColor: '#737373',
+    borderRadius: 20,
+  },
 });
 
 export { styles };
