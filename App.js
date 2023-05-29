@@ -26,6 +26,7 @@ const LiveChatButton = ({ onPress }) => {
 export default function App() {
   const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
+  const [expandCard, setExpandCard] = useState(false);
 
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const scrollViewRef = useRef(null);
@@ -33,7 +34,7 @@ export default function App() {
   const handleRadioPress = (index) => {
     setActiveCardIndex(index);
     scrollViewRef.current?.scrollTo({
-      x: index * 325, 
+      x: index * 375, 
       animated: true,
     });
   };
@@ -52,6 +53,14 @@ export default function App() {
 
   const handleLiveChatClose = () => {
     setShowLiveChat(false);
+  };
+
+  const handleCardExpand = () => {
+    if(expandCard) {
+      setExpandCard(false);
+    } else {
+      setExpandCard(true);
+    }
   };
 
   const panResponder = useRef(
@@ -123,23 +132,39 @@ export default function App() {
         </View>
       )}
 
+      {expandCard && (
+        <View
+          style={[
+            styles.expandedCard,
+          ]}
+        >
+          {/* expanded card content */}
+        </View>
+      )}
+
       {/* card asset */}
       <View style={styles.cards}>
         <ScrollView 
           ref={scrollViewRef}
-          contentContainerStyle={styles.myCard} 
+          contentContainerStyle={styles.myCard}
           horizontal={true}
           pagingEnabled={true}
           onMomentumScrollEnd={(event) => {
             const pageIndex = Math.round(
-              event.nativeEvent.contentOffset.x / 325
+              event.nativeEvent.contentOffset.x / 375
             );
             setActiveCardIndex(pageIndex);
           }}
         >
-          <CardAsset />
-          <CardAsset />
-          <CardAsset />
+          <TouchableOpacity onPress={handleCardExpand}>
+            <CardAsset style={styles.expandButton} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCardExpand}>
+            <CardAsset />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCardExpand}>
+            <CardAsset />
+          </TouchableOpacity>
         </ScrollView>
 
         {/* radio buttons container */}
