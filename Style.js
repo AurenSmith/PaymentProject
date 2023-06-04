@@ -132,6 +132,117 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 15,
   },
+  // jayden
+  container: {
+    flex: 1,
+    paddingTop: 50,
+    alignItems: 'center',
+  
+  },
+  register: {
+    marginTop: '70%'
+  },
+  row: { 
+    flexDirection: 'row',
+  },
+  button: {
+    width: 200,
+    height: 40,
+    backgroundColor: 'grey',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+  },
+  buttonText: {
+    color: 'black',
+    fontWeight: 'bold'
+  },
+  registerText: {
+    marginLeft: 15
+  },
+  input: {
+    backgroundColor: 'lightgrey',
+    borderRadius: 30,
+    marginBottom: 20,
+    height: 40,
+    width: 300,
+    padding: 5,
+    textAlign: 'center',
+  },
+  inputSmall: {
+    backgroundColor: 'lightgrey',
+    borderRadius: 30,
+    marginBottom: 20,
+    height: 40,
+    width: 130,
+    marginTop: 0,
+    padding: 5,
+    textAlign: 'center',
+  },
+  inputLarge: {
+    backgroundColor: 'lightgrey',
+    borderRadius: 30,
+    marginBottom: 20,
+    height: 200,
+    width: 300,
+    marginTop: 0,
+    padding: 5,
+    textAlign: 'center',
+  },
+  fName: {
+    marginRight: 40 
+  },
+  inputLabel: {
+    marginLeft: 10,
+  },
+  checkbox: {
+    marginLeft: 30,
+    marginRight: 10
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  registerButton: {
+    width: 200,
+    height: 40,
+    backgroundColor: 'grey',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    marginTop: 20,
+  },
+  circle: {
+    width: 150,
+    height: 150,
+    borderRadius: 150,
+    backgroundColor:  'grey',
+    
+    marginRight: 30
+  },
+  square: {
+    width: 130,
+    height: 90,
+    backgroundColor: 'grey',
+    borderRadius: 20,
+    marginTop: 30,
+    marginRight: 20,
+    alignItems: 'center',
+    justifyContent:  'center'
+  },
+  nextAmountDollars: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20
+  },
+  nextAmountPercentage: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 10
+  }
+  
 });
 
 export { styles };

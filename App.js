@@ -1,29 +1,134 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Checkbox from 'expo-checkbox';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, PanResponder, Animated } from 'react-native';
-import { useState, useRef } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Alert} from 'react-native';
 // assets or other files
 import { styles } from "./Style";
 import CardAsset from "./CardAsset";
 
-const MyButton = ({ onPress }) => {
-  return (
-    <TouchableOpacity style={styles.sidebarButton} onPress={onPress}>
-      {/* Add content for the button */}
-    </TouchableOpacity>
-  );
-};
 
-const LiveChatButton = ({ onPress }) => {
-  return (
-    <TouchableOpacity style={styles.liveButton} onPress={onPress}>
-      {/* Add content for the liveButton */}
-    </TouchableOpacity>
-  );
-};
+function LoginScreen({navigation}){
+  
+//  const [name, setName] = useState('');
+  
 
-export default function App() {
+  return (
+    
+    <View style={styles.container}>
+      <View style={styles.login}>
+        <Text style={styles.inputLabel}>Email</Text>
+        <TextInput 
+        style={styles.input}
+        placeholder='example@gmail.com'
+        // onChangeText = {(val) => setName(val)}
+        />
+        <Text style={styles.inputLabel}>Password</Text>
+        <TextInput 
+        style={styles.input}
+        placeholder='********'
+        />  
+      </View>
+      
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={() => navigation.navigate('Next')}
+          >
+          <Text style={styles.buttonText}>LOGIN</Text>
+          </TouchableOpacity>
+        
+        <View style={styles.register}>
+          <Text style={styles.registerText}>Not a member?</Text>
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={()=>navigation.navigate('Register')}
+            >
+            <Text style={styles.buttonText}>REGISTER</Text>          
+          </TouchableOpacity>
+        </View>
+    </View>
+    
+    
+  );
+}
+function RegisterScreen({navigation, route}){
+  const [isChecked, setChecked] = useState(false);
+  return (
+    <View style={styles.container}>
+      <View style={styles.registerDetails}>
+        <Text style={styles.inputLabel}>Email</Text>
+        <TextInput 
+        style={styles.input}
+        placeholder='example@gmail.com'
+        />
+        <View style={styles.row}>
+          <View>
+          <Text style={styles.inputLabel}>First Name</Text>
+          <TextInput 
+          style={[styles.inputSmall, styles.fName]}
+          placeholder='eg John'
+          />
+          </View>
+          <View>
+            <Text style={styles.inputLabel}>Last Name</Text>
+            <TextInput 
+          style={styles.inputSmall}
+          placeholder='eg Doe'
+          />
+          </View>
+        </View>
+        <Text style={styles.inputLabel}>Phone Number</Text>
+        <TextInput 
+        style={styles.input}
+        placeholder='021 234 5678'
+        keyboardType='numeric'
+        />
+        <Text style={styles.inputLabel}>Company Name</Text>
+        <TextInput 
+        style={styles.input}
+        />
+        <TextInput 
+        style={styles.inputLarge}
+        />
+        <View style={styles.checkboxRow}>
+          <Checkbox 
+            style={styles.checkbox}
+            value={isChecked}
+            onValueChange={setChecked}
+          />
+          <Text> Agree to terms and conditions</Text>
+        </View>
+        
+        
+      </View>
+      <TouchableOpacity 
+          style={styles.registerButton}
+          onPress={()=>Alert.alert('Success', 'Sign Up Successful')}
+          >
+            <Text>Sign Up</Text>
+        </TouchableOpacity>
+    </View>
+  )
+}
+// aurens code is in here
+function HomeScreen({navigation, route}) { 
+  const MyButton = ({ onPress }) => {
+    return (
+      <TouchableOpacity style={styles.sidebarButton} onPress={onPress}>
+        {/* Add content for the button */}
+      </TouchableOpacity>
+    );
+  };
+  
+  const LiveChatButton = ({ onPress }) => {
+    return (
+      <TouchableOpacity style={styles.liveButton} onPress={onPress}>
+        {/* Add content for the liveButton */}
+      </TouchableOpacity>
+    );
+  };
+
   const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
 
@@ -54,8 +159,7 @@ export default function App() {
       },
     })
   ).current;
-
-  return (
+  return(
     <View style={styles.container}>
       {/* open side bar button */}
       <MyButton onPress={handleSidebarButtonPress} />
@@ -119,5 +223,50 @@ export default function App() {
 
       <StatusBar style="auto" />
     </View>
-  );
+    
+  )
 }
+function NextScreen({navigation, route}) {
+  return (
+    <View style={styles.container}>
+      <View  style={styles.row}>
+        <View style={styles.circle}></View>
+        <View style={styles.square}>
+          <Text style={styles.nextAmountDollars}>-$0.00</Text>
+          <Text style={styles.nextAmountPercentage}>-0.00%</Text>
+          
+        </View>
+      </View>
+    </View>
+    
+  )
+}
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{title: 'Login'}}
+        />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name='Next' component={NextScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+
+export default App;
+
+
+
+
+
+
+
