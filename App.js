@@ -111,7 +111,7 @@ function RegisterScreen({navigation, route}){
     </View>
   )
 }
-// aurens code is in here
+// aurens code is in here.
 function HomeScreen({navigation, route}) { 
   const MyButton = ({ onPress }) => {
     return (
