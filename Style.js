@@ -229,6 +229,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: 30,
     marginRight: 20,
+    marginLeft: 20,
     alignItems: 'center',
     justifyContent:  'center'
   },
