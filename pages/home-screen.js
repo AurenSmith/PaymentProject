@@ -1,11 +1,12 @@
+import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, PanResponder, Animated } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
 // assets or other files
-import { styles } from "./Style";
-import CardAsset from "./CardAsset";
+import { styles } from "../Style";
+import CardAsset from "../CardAsset";
 
 const MyButton = ({ onPress }) => {
   return (
@@ -23,7 +24,7 @@ const LiveChatButton = ({ onPress }) => {
   );
 };
 
-export default function App() {
+export default function HomeScreen() {
   const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
 

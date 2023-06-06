@@ -9,7 +9,7 @@ function NextScreenAsset() {
         <View  style={{flexDirection: 'row'}}>
           <PieChartAsset />
           <View style={styles.square}>
-            <Text style={styles.nextAmountDollars}>-$1.00</Text>
+            <Text style={styles.nextAmountDollars}>-$0.00</Text>
             <Text style={styles.nextAmountPercentage}>-0.00%</Text>
           </View>
         </View>
