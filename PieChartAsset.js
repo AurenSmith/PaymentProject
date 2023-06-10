@@ -9,7 +9,7 @@ export default function PieChartAsset() {
             <PieChart
           widthAndHeight={150}
           series={[62.5, 37.5]}
-          sliceColor={['grey', 'lightgrey']}
+          sliceColor={['#F76077', '#FDAA98']}
           coverFill={null}
           coverRadius={0.65}
           style={{transform: [{rotate: '120deg'}],}}
@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     percentage: {
         color: 'grey',
         fontWeight: 'bold',
-        fontSize: 25
+        fontSize: 25,
+        
     },
     recomm: {
         color: 'grey',

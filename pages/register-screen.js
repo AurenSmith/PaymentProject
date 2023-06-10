@@ -11,6 +11,7 @@ export default function RegisterScreen({navigation, route}){
           <TextInput 
           style={styles.input}
           placeholder='example@gmail.com'
+          placeholderTextColor='white'
           />
           <View style={{flexDirection: 'row'}}>
             <View>
@@ -18,6 +19,7 @@ export default function RegisterScreen({navigation, route}){
             <TextInput 
             style={[styles.inputSmall, styles.fName]}
             placeholder='eg John'
+            placeholderTextColor='white'
             />
             </View>
             <View>
@@ -25,6 +27,7 @@ export default function RegisterScreen({navigation, route}){
               <TextInput 
             style={styles.inputSmall}
             placeholder='eg Doe'
+            placeholderTextColor='white'
             />
             </View>
           </View>
@@ -33,6 +36,7 @@ export default function RegisterScreen({navigation, route}){
           style={styles.input}
           placeholder='021 234 5678'
           keyboardType='numeric'
+          placeholderTextColor='white'
           />
           <Text style={styles.inputLabel}>Company Name</Text>
           <TextInput 
@@ -54,9 +58,20 @@ export default function RegisterScreen({navigation, route}){
         </View>
         <TouchableOpacity 
             style={styles.registerButton}
-            onPress={()=>Alert.alert('Success', 'Sign Up Successful')}
-            >
-              <Text>Sign Up</Text>
+            onPress={()=>Alert.alert(
+              'Sign Up Successful.', 
+              'Thank you User. Please log in.',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => navigation.navigate('Login')
+                }
+              ]
+
+              )
+                          
+            }>
+              <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
       </View>
     )
@@ -72,16 +87,17 @@ const styles = StyleSheet.create({
         marginLeft: 10,
       },
       input: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#258699',
         borderRadius: 30,
         marginBottom: 20,
         height: 40,
         width: 300,
         padding: 5,
         textAlign: 'center',
+        color: 'white'
       },
       inputSmall: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#258699',
         borderRadius: 30,
         marginBottom: 20,
         height: 40,
@@ -91,7 +107,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
       },
       inputLarge: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#258699',
         borderRadius: 30,
         marginBottom: 20,
         height: 200,
@@ -114,12 +130,17 @@ const styles = StyleSheet.create({
       registerButton: {
         width: 200,
         height: 40,
-        backgroundColor: 'grey',
+        backgroundColor: '#258699',
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,
         marginTop: 20,
       },
+      buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16
+      }
     
 })
