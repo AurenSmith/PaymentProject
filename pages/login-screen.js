@@ -21,6 +21,7 @@ function LoginScreen({ navigation }){
             style={styles.input}
             placeholder='********'
             placeholderTextColor='white'
+            secureTextEntry={true}
             />  
           </View>
               <TouchableOpacity 
@@ -36,6 +37,12 @@ function LoginScreen({ navigation }){
                   ])
               }>
               <Text style={styles.buttonText}>Login</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.button}
+                onPress={() => navigation.navigate('Reports-More')  
+              }>
+              <Text style={styles.buttonText}>Reports More</Text>
               </TouchableOpacity>
             <View style={styles.register}>
               <Text style={styles.registerText}>Not a member?</Text>
@@ -92,6 +99,6 @@ function LoginScreen({ navigation }){
             marginLeft: 15
           },
           register: {
-            marginTop: '70%'
+            marginTop: '50%'
           },
     })

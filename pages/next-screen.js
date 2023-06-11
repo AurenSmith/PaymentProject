@@ -25,8 +25,7 @@ function NextScreen() {
         </View>
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <TouchableOpacity style={styles.buttonSquare}>
-            <ImageBackground source={require('../assets/button.png')} resizeMode = 'cover'
-            />
+            
 
             
 
@@ -48,7 +47,7 @@ export default NextScreen;
   const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 50,
+        paddingTop: '5%',
         alignItems: 'center',
       },
       square: {
