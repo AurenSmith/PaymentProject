@@ -24,7 +24,7 @@ const LiveChatButton = ({ onPress }) => {
   );
 };
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
 
