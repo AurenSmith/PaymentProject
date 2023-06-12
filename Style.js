@@ -175,6 +175,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#737373',
     borderRadius: 20,
   },
+
+  
+  
+ 
+  
+  
+ 
+  
+  
+  
+  
+  
 });
 
 export { styles };
