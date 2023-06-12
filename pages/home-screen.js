@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 // assets or other files
 import { styles } from "../Style";
 import CardAsset from "../CardAsset";
+import Sidebar from '../components/Sidebar';
 
 const MyButton = ({ onPress }) => {
   return (
@@ -25,15 +26,15 @@ const LiveChatButton = ({ onPress }) => {
 };
 
 export default function HomeScreen({ navigation }) {
-  const [showAdditionalObject, setShowAdditionalObject] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
-  const handleSidebarButtonPress = () => {
-    setShowAdditionalObject(true);
+  const sidebarOpen = () => {
+    setShowSidebar(true);
   };
 
-  const handleSidebarClose = () => {
-    setShowAdditionalObject(false);
+  const sidebarClose = () => {
+    setShowSidebar(false);
   };
 
   const handleLiveChatButtonPress = () => {
@@ -44,41 +45,22 @@ export default function HomeScreen({ navigation }) {
     setShowLiveChat(false);
   };
 
-  const panResponder = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: (_, { dx }) => dx < -10, // Swipe left threshold
-      onPanResponderMove: (_, { dx }) => {
-        // Handle swipe left to close sidebar
-        if (dx < -10) {
-          handleSidebarClose();
-        }
-      },
-    })
-  ).current;
-
   return (
     <View style={styles.container}>
-      {/* open side bar button */}
-      <MyButton onPress={handleSidebarButtonPress} />
+      {/* card asset */}
+      <View style={styles.myCard}>
+        <CardAsset />
+      </View>
 
-      {/* side bar asset */}
-      {showAdditionalObject && (
-        <View
-          style={[
-            styles.sidebar,
-            {
-              transform: [{ translateX: 0}],
-            },
-          ]}
-          {...panResponder.panHandlers}
-        >
-          {/* add content for the sidebar */}
-          <View style={styles.sidebar}></View>
-        </View>
-      )}
+      {/* open side bar button */}
+      <MyButton onPress={sidebarOpen} />
 
       {/* open live chat button */}
       <LiveChatButton onPress={handleLiveChatButtonPress} />
+
+      {showSidebar && (
+        <Sidebar onClose={sidebarClose}/>
+      )}
 
       {/* live chat asset */}
       {showLiveChat && (
@@ -112,11 +94,6 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
       )}
-
-      {/* card asset */}
-      <View style={styles.myCard}>
-        <CardAsset />
-      </View>
 
       <StatusBar style="auto" />
     </View>

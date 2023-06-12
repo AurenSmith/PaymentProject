@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
     width: 1125,
 
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+
   },
   cardButtons: {
     position: 'absolute',
