@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function AssetExample() {
   return (
@@ -21,8 +22,15 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'left',
     padding: 24,
-    width: '100%',
-    height: '100%',
+    width: 325,
+    height: 200,
+    backgroundColor: '#737373',
+    borderRadius: 20,
+    margin: 25,
+    marginBottom: 0,
+    borderWidth: 5,
+    borderColor: '#545454',
+    overflow: 'visible',
   },
   myTitle: {
     margin: 5,

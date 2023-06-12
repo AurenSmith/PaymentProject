@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
     backgroundColor: '#737373',
+    zIndex: 1,
   },
   liveButton: {
     position: 'absolute',
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     height: 400,
     borderRadius: 20,
     backgroundColor: '#797979',
+    zIndex: 1,
   },
   liveContent: {
     position: 'absolute',
@@ -124,13 +126,54 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  myCard: {
+  cards: {
     position: 'absolute',
     top: 175,
+    width: 375,
+    height: 275,
+  },
+  myCard: {
+    position: 'absolute',
+    width: 1125,
+
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  cardButtons: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: 50,
+
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cardRadio: {
+    width: 24,
+    height: 24,
+    borderColor: '#737373',
+    borderWidth: 3,
+    borderRadius: 12,
+    margin: 15,
+  },
+  radioActive: {
+    width: 24,
+    height: 24,
     backgroundColor: '#737373',
-    width: 315,
-    height: 200,
-    borderRadius: 15,
+    borderColor: '#737373',
+    borderWidth: 3,
+    borderRadius: 12,
+    margin: 15,
+  },
+  expandedCard: {
+    position: 'absolute',
+    height: 592,
+    top: 200,
+    left: 25,
+    right: 25,
+    backgroundColor: '#737373',
+    borderRadius: 20,
   },
 
   

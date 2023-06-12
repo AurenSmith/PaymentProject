@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
 // assets or other files
 import { styles } from "./Style";
 import CardAsset from "./CardAsset";
@@ -10,9 +9,6 @@ import NextScreen from "./pages/next-screen";
 import RegisterScreen from './pages/register-screen';
 import HomeScreen from './pages/home-screen';
 import ReportsMoreScreen from './pages/reports-more-screen';
-
-
-
 
 const Stack = createNativeStackNavigator();
 
@@ -31,12 +27,4 @@ function App() {
   );
 };
 
-
 export default App;
-
-
-
-
-
-
-
