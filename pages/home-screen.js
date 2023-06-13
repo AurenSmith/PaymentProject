@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, PanResponder, Animated } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -8,24 +8,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { styles } from "../Style";
 import CardAsset from "../CardAsset";
 import Sidebar from '../components/Sidebar';
+import Payment from '../components/Payment';
 
-const MyButton = ({ onPress }) => {
-  return (
-    <TouchableOpacity style={styles.sidebarButton} onPress={onPress}>
-      {/* Add content for the button */}
-    </TouchableOpacity>
-  );
-};
-
-const LiveChatButton = ({ onPress }) => {
-  return (
-    <TouchableOpacity style={styles.liveButton} onPress={onPress}>
-      {/* Add content for the liveButton */}
-    </TouchableOpacity>
-  );
-};
-
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -46,17 +31,24 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      {/* header */}
+      <View style={styles.header}>
+        {/* open side bar button */}
+        <TouchableOpacity style={styles.sidebarButton} onPress={sidebarOpen}></TouchableOpacity>
+        {/* <MyButton onPress={sidebarOpen} /> */}
+
+        {/* open live chat button */}
+        <TouchableOpacity style={styles.liveButton} onPress={handleLiveChatButtonPress}></TouchableOpacity>
+        {/* <LiveChatButton onPress={handleLiveChatButtonPress} /> */}
+      </View>
+
       {/* card asset */}
       <View style={styles.myCard}>
         <CardAsset />
       </View>
 
-      {/* open side bar button */}
-      <MyButton onPress={sidebarOpen} />
-
-      {/* open live chat button */}
-      <LiveChatButton onPress={handleLiveChatButtonPress} />
+      <Payment />
 
       {showSidebar && (
         <Sidebar onClose={sidebarClose}/>
@@ -96,6 +88,6 @@ export default function HomeScreen({ navigation }) {
       )}
 
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }

@@ -67,9 +67,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     width: '50%',
-    aspectRatio: '3/2',
-    borderTopRightRadius: '16.67% 50%',
-    borderBottomRightRadius: '16.67% 50%',
+    aspectRatio: 2.5, //3/2
+    // borderTopRightRadius: '16.67% 50%',
+    // borderBottomRightRadius: '16.67% 50%',
+    borderTopRightRadius: 100,
+    borderBottomRightRadius: 100,
 
     backgroundColor: 'purple',
   },

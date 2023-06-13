@@ -20,7 +20,7 @@ export default function AssetExample() {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'left',
+    alignItems: 'flex-start',
     padding: 24,
     width: 325,
     height: 200,
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     overflow: 'visible',
   },
   myTitle: {
-    margin: 5,
     fontSize: 30,
     fontWeight: 'bold',
     color: "#ffffff",
