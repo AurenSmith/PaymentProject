@@ -2,10 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#D9D9D9',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+  },
+  header: {
+    width: '100%',
+    height: 139,
   },
   sidebarButton: {
     position: 'absolute',
@@ -133,12 +136,7 @@ const styles = StyleSheet.create({
     height: 275,
   },
   myCard: {
-    position: 'absolute',
-    width: 1125,
-
-    flexDirection: 'row',
-    justifyContent: 'center',
-
+    paddingBottom: 25,
   },
   cardButtons: {
     position: 'absolute',
@@ -151,7 +149,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardRadio: {
-    width: 24,
+    width: 24, 
     height: 24,
     borderColor: '#737373',
     borderWidth: 3,
@@ -176,18 +174,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#737373',
     borderRadius: 20,
   },
-
-  
-  
- 
-  
-  
- 
-  
-  
-  
-  
-  
 });
 
 export { styles };

@@ -32,7 +32,7 @@ function LoginScreen({ navigation }){
                   [
                     {
                       text: 'Ok',
-                      onPress: () => navigation.navigate('Home')
+                      onPress: () => navigation.navigate('Test')
                     }
                   ])
               }>
