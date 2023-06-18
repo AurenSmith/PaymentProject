@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, PanResponder } from 'react-native';
 import { useState, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Sidebar({ onClose }) {
+  const navigation = useNavigation();
   const [press, setPress] = useState(false);
   
   const HandlePress = () => {
@@ -41,7 +43,7 @@ export default function Sidebar({ onClose }) {
       <TouchableOpacity style={styles.buttons}>
         <Text style={styles.buttonText}>Payments</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
+      <TouchableOpacity style={styles.buttons} onPress={()=>navigation.navigate('Reports-More')}>
         <Text style={styles.buttonText}>Reports</Text>
       </TouchableOpacity>
     </View>

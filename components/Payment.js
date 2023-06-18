@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Payment() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -19,7 +22,7 @@ export default function Payment() {
       <Text style={styles.textTag}>Recipient</Text>
       <TextInput style={styles.amount} placeholder="Recipient" placeholderTextColor="#ffffff"></TextInput>
 
-      <TouchableOpacity style={styles.next}>
+      <TouchableOpacity style={styles.next} onPress={()=>navigation.navigate('Next')}>
         <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
     </View>
