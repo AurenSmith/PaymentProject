@@ -9,7 +9,6 @@ import NextScreen from "./pages/next-screen";
 import RegisterScreen from './pages/register-screen';
 import HomeScreen from './pages/home-screen';
 import ReportsMoreScreen from './pages/reports-more-screen';
-import TestScreen from './pages/test-screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +26,6 @@ function App() {
         <Stack.Screen name='Next' component={NextScreen} />
         <Stack.Screen name="Reports-More" component={ReportsMoreScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="Test" component={TestScreen} />
         
       </Stack.Navigator>
     </NavigationContainer>
