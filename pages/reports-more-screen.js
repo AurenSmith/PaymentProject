@@ -5,7 +5,7 @@ import SideBarButton from '../SidebarButtonAsset';
 export default function ReportsMoreScreen() {
     return (
         <View style={styles.container}>
-            <SideBarButton></SideBarButton>
+            <Text>Test</Text>
         </View>
     )
 }
