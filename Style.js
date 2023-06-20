@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     backgroundColor: '#D9D9D9',
-    alignItems: 'center',
     justifyContent: 'flex-start',
   },
   header: {
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     right: 25,
     backgroundColor: '#737373',
     borderRadius: 20,
-  },
+  }
 });
 
 export { styles };
