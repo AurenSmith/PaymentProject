@@ -9,6 +9,7 @@ import { styles } from "../Style";
 import CardAsset from "../CardAsset";
 import Sidebar from '../components/Sidebar';
 import Payment from '../components/Payment';
+import Reports from '../components/Reports';
 
 export default function HomeScreen() {
   const [showLiveChat, setShowLiveChat] = useState(false);
@@ -49,6 +50,8 @@ export default function HomeScreen() {
       </View>
 
       <Payment />
+
+      <Reports />
 
       {showSidebar && (
         <Sidebar onClose={sidebarClose}/>
