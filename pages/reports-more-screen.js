@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 // assets or other files
 import { styles } from "../Style";
 import Sidebar from '../components/Sidebar';
+import Reports from "../components/Reports";
 
 
 export default function HomeScreen() {
@@ -53,7 +54,7 @@ export default function HomeScreen() {
         
       </View>
       <View style={local.orders}>
-        <FlatList
+        {/* <FlatList
         // temp data
           data={[
             {key: ' 1 Jan                    Recipient1                 -$0.00 '},
@@ -71,7 +72,10 @@ export default function HomeScreen() {
           <TouchableOpacity style={local.order} onPress={handleOrderPress}>
             <Text style={local.item}>{item.key}</Text>
           </TouchableOpacity>}
-          />
+          /> */}
+
+
+          <Reports />
       </View>
       <TouchableOpacity style={local.button}>
         <Text style={local.buttonText}>Other</Text>
