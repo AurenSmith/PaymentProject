@@ -11,12 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const Test = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    
     return (
-
         <View>
             <Modal
-                
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
@@ -31,7 +28,6 @@ const Test = () => {
                         <Text style={{fontSize: 12, marginBottom: 10}}>Card Number: 1234 **** **** 1234</Text>
                         <Text style={{fontSize: 12}}>Notes</Text>
                         <View style={styles.notes} />
-
                         {/*close button */}
                         <TouchableOpacity 
                         style={styles.closeButton}
@@ -41,18 +37,7 @@ const Test = () => {
                         </TouchableOpacity>
                     </View>
                  </View>
-                
-                
-
             </Modal>
-
-
-
-
-
-
-
-
             <TouchableOpacity style={styles.textDiv} onPress={()=>setModalVisible(true)}>
                 <Text style={[styles.myText, {color: '#A7A7A7'}]}>1 Jan</Text>
                 <Text style={[styles.myText, {color: '#FFFFFF'}]}>Recipient</Text>

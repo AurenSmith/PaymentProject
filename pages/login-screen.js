@@ -1,18 +1,30 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
 
+// import SQLite from 'react-native-sqlite-storage';
+import * as SQLite from 'expo-sqlite';
+import { useState } from 'react';
+
+
+
+
+const db = SQLite.openDatabase('./../login.db');
+
+
+
 
   
 
 
 function LoginScreen({ navigation }){
   
+
       return (
         <View style={styles.container}>
           <View style={styles.login}>
             <Text style={styles.inputLabel}>Email</Text>
             <TextInput 
             style={styles.input}
-            placeholder='example@gmail.com'
+            placeholder={'example@gmail.com'}
             placeholderTextColor='white'
             // onChangeText = {(val) => setName(val)}
             />

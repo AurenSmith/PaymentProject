@@ -13,8 +13,6 @@ import Reports from "../components/Reports";
 export default function HomeScreen() {
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const [showOrder, setShowOrder] = useState(false);
-
   
   const sidebarOpen = () => {
     setShowSidebar(true);
@@ -31,13 +29,7 @@ export default function HomeScreen() {
   const handleLiveChatClose = () => {
     setShowLiveChat(false);
   };
-  const handleOrderPress = () => {
-    setShowOrder(true);
-  }
-
-  const handleOrderClose = () => {
-    setShowOrder(false);
-  };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -53,86 +45,24 @@ export default function HomeScreen() {
 
         
       </View>
-      <View style={local.orders}>
-        {/* <FlatList
-        // temp data
-          data={[
-            {key: ' 1 Jan                    Recipient1                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient2                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient3                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient4                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient5                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient6                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient7                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient8                 -$0.00 '},
-            {key: ' 1 Jan                    Recipient9                 -$0.00 '},
-            
-          ]}
-          renderItem={({item}) => 
-          <TouchableOpacity style={local.order} onPress={handleOrderPress}>
-            <Text style={local.item}>{item.key}</Text>
-          </TouchableOpacity>}
-          /> */}
+      <Reports />
+      <View style={local.buttonContainer}>
+        <TouchableOpacity style={local.button}>
+          <Text style={local.buttonText}>Other</Text>
+        </TouchableOpacity>
+        <View style={{flexDirection: 'row', marginTop: 20, paddingBottom: 30}}>
+            <TouchableOpacity style={local.buttonSquare}>
+            </TouchableOpacity>
+            <TouchableOpacity style={local.button}>
+              <Text style={local.buttonText}>Generate Purchase</Text>
+            </TouchableOpacity>
+          </View>
 
-
-          <Reports />
       </View>
-      <TouchableOpacity style={local.button}>
-        <Text style={local.buttonText}>Other</Text>
-      </TouchableOpacity>
-      <View style={{flexDirection: 'row', marginTop: 20, paddingBottom: 30}}>
-          <TouchableOpacity style={local.buttonSquare}>
-            
-
-            
-
-          </TouchableOpacity>
-          <TouchableOpacity style={local.button}>
-            <Text style={local.buttonText}>Generate Purchase</Text>
-          </TouchableOpacity>
-          
-        </View>
-      
-
-      
-      {/* order asset */}
-          
-      {showOrder && (
-        <View 
-        style={local.orderContainer}>
-
-          <Text style={{fontSize: 16}}>Recipient</Text>
-          <Text style={{fontSize: 20, marginBottom: 10}}>$-0.00</Text>
-          <Text style={{fontSize: 14, marginBottom: 10}}>12:00pm, Mon 31 January 2023 </Text>
-          <Text style={{fontSize: 12, fontWeight: 'bold'}}>Details </Text>
-          <Text style={{fontSize: 12, marginBottom: 10}}>Card Number: 1234 **** **** 1234</Text>
-          <Text style={{fontSize: 12}}>Notes</Text>
-          <View style={local.notes} />
-
-          
-
-          
-          {/*close button */}
-          <TouchableOpacity 
-          style={local.close}
-          onPress={handleOrderClose}>
-            <Text style={{color: 'white', fontWeight: 'bold'}}>Close</Text>
-          </TouchableOpacity>
-          
-
-          
-        
-
-        </View>
-      )}
 
       {showSidebar &&(
         <Sidebar onClose={sidebarClose}/>
       )}
-
-      
-
-      
 
       {/* live chat asset */}
       {showLiveChat && (
@@ -218,37 +148,12 @@ const local = StyleSheet.create({
       justifyContent: 'center',
       marginRight: 15
     },
-    orderContainer: {
-      height: '35%',
-      width: '80%',
-      borderRadius: 20,
-      backgroundColor: '#666666',
-      position: 'absolute',
-      top: '25%',
-      left: '10%',
-      padding: 10
-  },
-    close: {
-     width: '50%',
-     height: 30,
-     backgroundColor: '#737373',
-     marginLeft: '25%',
-     marginTop: 10,
-     borderRadius: 20,
-     alignItems: 'center',
-     justifyContent: 'center'
-  },
-  orderConent: {
-   postion: 'absolute',
-   left: 10,
-   top: 10
-  },
-  notes: {
-    width: '80%',
-    height: '30%',
-    backgroundColor: '#737373',
-    borderRadius: 15,
-    marginLeft: '10%'
-  }
+    buttonContainer: {
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+   
+  
 
 })

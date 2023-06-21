@@ -11,6 +11,7 @@ import Sidebar from '../components/Sidebar';
 import Payment from '../components/Payment';
 import Reports from '../components/Reports';
 
+
 export default function HomeScreen() {
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -52,6 +53,7 @@ export default function HomeScreen() {
       <Payment />
 
       <Reports />
+      
 
       {showSidebar && (
         <Sidebar onClose={sidebarClose}/>
