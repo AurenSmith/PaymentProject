@@ -7,16 +7,27 @@ import { useState } from 'react';
 
 
 
-const db = SQLite.openDatabase('./../login.db');
+const db = SQLite.openDatabase(
+  'login.db', 
+  
+  );
 
 
+  
 
 
   
 
 
 function LoginScreen({ navigation }){
-  
+      const [name, setName] = useState('undefined');
+
+      db.transaction(tx => {
+        tx.executeSql("INSERT INTO Users (name, password) VALUES (jayden, jelly)");
+        Alert.alert('hello');
+        
+      })
+      
 
       return (
         <View style={styles.container}>
