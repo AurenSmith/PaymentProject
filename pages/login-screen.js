@@ -1,18 +1,41 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
 
+// import SQLite from 'react-native-sqlite-storage';
+import * as SQLite from 'expo-sqlite';
+import { useState } from 'react';
+
+
+
+
+const db = SQLite.openDatabase(
+  'login.db', 
+  
+  );
+
+
+  
+
 
   
 
 
 function LoginScreen({ navigation }){
-  
+      const [name, setName] = useState('undefined');
+
+      db.transaction(tx => {
+        tx.executeSql("INSERT INTO Users (name, password) VALUES (jayden, jelly)");
+        // Alert.alert('hello');
+        
+      })
+      
+
       return (
         <View style={styles.container}>
           <View style={styles.login}>
             <Text style={styles.inputLabel}>Email</Text>
             <TextInput 
             style={styles.input}
-            placeholder='example@gmail.com'
+            placeholder={'example@gmail.com'}
             placeholderTextColor='white'
             // onChangeText = {(val) => setName(val)}
             />
@@ -38,12 +61,12 @@ function LoginScreen({ navigation }){
               }>
               <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
-              <TouchableOpacity 
+              {/* <TouchableOpacity 
                 style={styles.button}
                 onPress={() => navigation.navigate('Reports-More')  
               }>
               <Text style={styles.buttonText}>Reports More</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             <View style={styles.register}>
               <Text style={styles.registerText}>Not a member?</Text>
               <TouchableOpacity 
