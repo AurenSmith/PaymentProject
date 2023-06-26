@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView} from 'react-native';
 import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 
@@ -42,9 +42,15 @@ export default function RegisterScreen({navigation, route}){
           <TextInput 
           style={styles.input}
           />
-          <TextInput 
-          style={styles.inputLarge}
-          />
+          <View style={styles.terms}>
+            <Text style ={{fontWeight: 'bold', marginBottom: 10}}>Terms & Conditions</Text>
+            <Text style={{textAlign: 'center'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            </Text>
+          </View>
           <View style={styles.checkboxRow}>
             <Checkbox 
               style={styles.checkbox}
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
         padding: 5,
         textAlign: 'center',
       },
-      inputLarge: {
+      terms: {
         backgroundColor: '#258699',
         borderRadius: 30,
         marginBottom: 20,
@@ -114,7 +120,11 @@ const styles = StyleSheet.create({
         width: 300,
         marginTop: 0,
         padding: 5,
-        textAlign: 'center',
+        alignItems: 'center',
+        
+        
+        
+
       },
       fName: {
         marginRight: 40 

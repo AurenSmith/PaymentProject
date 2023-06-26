@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Payment() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -19,7 +22,7 @@ export default function Payment() {
       <Text style={styles.textTag}>Recipient</Text>
       <TextInput style={styles.amount} placeholder="Recipient" placeholderTextColor="#ffffff"></TextInput>
 
-      <TouchableOpacity style={styles.next}>
+      <TouchableOpacity style={styles.next} onPress={()=>navigation.navigate('Next')}>
         <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     margin: '7%',
 
     borderRadius: 20,
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
   },
   swapButton: {
     position: 'absolute',
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
     borderRadius: 20,
-    backgroundColor: '#ababab',
+    backgroundColor: 'black',
   },
   swapText: {
     textAlign: 'center',
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
     paddingLeft: '7%',
     borderRadius: 25,
 
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
     color: '#ffffff',
     fontSize: 20,
     fontWeight: 'bold',
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
 
     textAlignVertical: 'top',
 
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
     color: '#ffffff',
     fontSize: 14,
     fontWeight: 'bold',
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
     borderRadius: 25,
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
   },
   nextText: {
     textAlign: 'center',

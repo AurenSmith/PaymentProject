@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     left: 23,
     width: 61,
     height: 61,
-    backgroundColor: '#737373',
+    backgroundColor: 'black',
     borderRadius: 20,
   },
   sidebar: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     right: 23,
     width: 61,
     height: 61,
-    backgroundColor: '#737373',
+    backgroundColor: 'black',
     borderRadius: 20,
   },
   liveChat: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     left: 23,
     height: 400,
     borderRadius: 20,
-    backgroundColor: '#797979',
+    backgroundColor: 'white',
     zIndex: 1,
   },
   liveContent: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   liveChatText: {
     position: 'relative',
-    color: '#fff',
+    color: 'black',
     fontSize: 20,
     marginBottom: 20,
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
 
-    backgroundColor: '#737373',
+    backgroundColor: 'black',
     borderTopRightRadius: 20,
     width: 61,
     height: 61,
@@ -87,9 +87,11 @@ const styles = StyleSheet.create({
     right: 61,
     left: 0,
     height: 61,
-    borderTopLeftRadius: 20,
+    borderTopLeftRadius: 20,  
+    borderBottomWidth: 1,
+    borderBottomColor: '#B0B0B0',
 
-    backgroundColor: '#737373',
+    backgroundColor: 'white',
   },
   liveBottombar: {
     position: 'absolute',
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
 
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     height: 61,
 
     fontSize: 20,
-    color: '#ffffff',
+    color: 'black',
     marginLeft: 10,
     marginTop: 4,
   },
@@ -120,14 +122,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: 61,
     width: 40,
-
+    
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   liveSend: {
     textAlign: 'center',
-    color: '#ffffff',
+    color: 'black',
   },
   cards: {
     position: 'absolute',
