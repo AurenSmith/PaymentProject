@@ -1,17 +1,63 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { useState, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
+
+
+
+
+
+
 
 const Test = () => {
+    const [modalVisible, setModalVisible] = useState(false);
     return (
-        <View style={styles.textDiv}>
-            <Text style={[styles.myText, {color: '#A7A7A7'}]}>1 Jan</Text>
-            <Text style={[styles.myText, {color: '#FFFFFF'}]}>Recipient</Text>
-            <Text style={[styles.myText, {color: '#FFFFFF'}]}>-$0.00</Text>
+        <View>
+            <Modal
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                setModalVisible(!modalVisible);
+             }}>
+                <View style={styles.centeredView}>
+                    <View style = {styles.orderContainer}>
+                        <Text style={{fontSize: 16}}>Recipient</Text>
+                        <Text style={{fontSize: 20, marginBottom: 10}}>$-0.00</Text>
+                        <Text style={{fontSize: 14, marginBottom: 10}}>12:00pm, Mon 31 January 2023 </Text>
+                        <Text style={{fontSize: 12, fontWeight: 'bold'}}>Details </Text>
+                        <Text style={{fontSize: 12, marginBottom: 10}}>Card Number: 1234 **** **** 1234</Text>
+                        <Text style={{fontSize: 12}}>Notes</Text>
+                        <View style={styles.notes} />
+                        {/*close button */}
+                        <TouchableOpacity 
+                        style={styles.closeButton}
+                        onPress={onPress=()=>setModalVisible(false)}
+                        >
+                            <Text style={{color: 'white', fontWeight: 'bold'}}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                 </View>
+            </Modal>
+            <TouchableOpacity style={styles.textDiv} onPress={()=>setModalVisible(true)}>
+                <Text style={[styles.myText, {color: '#A7A7A7'}]}>1 Jan</Text>
+                <Text style={[styles.myText, {color: '#FFFFFF'}]}>Recipient</Text>
+                <Text style={[styles.myText, {color: '#FFFFFF'}]}>-$0.00</Text>
+            </TouchableOpacity>
+
         </View>
+
+
+
+
+        
+        
+        
     );
 };
 
 export default function Reports() {
+    const navigation = useNavigation();
+    
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Details</Text>
@@ -40,19 +86,23 @@ export default function Reports() {
                 </ScrollView>
             </View>
 
-            <TouchableOpacity style={styles.myButton}>
+            <TouchableOpacity style={styles.myButton} onPress={()=>navigation.navigate('Reports-More')}>
                 <Text style={styles.viewMore}>View More</Text>
             </TouchableOpacity>
         </View>
+
+        
+
+
+
     );
 }
     
 const styles = StyleSheet.create({
     container: {
         margin: 25,
-
         borderRadius: 25,
-        backgroundColor: '#ffffff',
+        backgroundColor: 'white',
     },
     title: {
         margin: 25,
@@ -67,14 +117,14 @@ const styles = StyleSheet.create({
         marginVertical: 0,
         
         borderRadius: 20,
-        backgroundColor: '#737373',
+        backgroundColor: '#258699',
     },
     scrollDiv: {
         width: '100%',
     },
     textDiv: {
         marginHorizontal: 10,
-        marginVertical: 5,
+        marginVertical: 3,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -89,12 +139,58 @@ const styles = StyleSheet.create({
 
         justifyContent: 'center',
 
-        backgroundColor: '#737373',
+        backgroundColor: '#258699',
         borderRadius: 50,
     },
     viewMore: {
         textAlign: 'center',
         color: '#FFFFFF',
         fontWeight: '700'
-    }
+    },
+    orderContainer: {
+        height: '40%',
+        width: '80%',
+        borderRadius: 30,
+        backgroundColor: 'white',
+        position: 'absolute',
+        top: '25%',
+        left: '10%',
+        padding: 10,
+        shadowColor: '#258699',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 20,
+        elevation: 5,
+        
+        
+
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+      },
+      closeButton: {
+        width: '50%',
+        height: 30,
+        backgroundColor: '#258699',
+        marginLeft: '25%',
+        marginTop: 20,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
+     },
+     notes: {
+        width: '80%',
+        height: '30%',
+        backgroundColor: '#258699',
+        borderRadius: 15,
+        marginLeft: '10%'
+      }
+    
+
 });

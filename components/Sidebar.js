@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, PanResponder } from 'react-native';
 import { useState, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Sidebar({ onClose }) {
+  const navigation = useNavigation();
   const [press, setPress] = useState(false);
   
   const HandlePress = () => {
@@ -54,12 +56,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     width: '80%',
-    height: '100%',
+    height: 800,
 
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
 
-    backgroundColor: 'orange',
+    backgroundColor: 'white',
   }, 
   buttons: {
     marginVertical: 15,
@@ -73,13 +75,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 100,
     borderBottomRightRadius: 100,
 
-    backgroundColor: 'purple',
+    backgroundColor: '#258699',
   },
   buttonText: {
     padding: 10,
     paddingRight: 20,
 
-    color: 'orange',
+    color: 'white',
     fontSize: 20,
   },
 });
