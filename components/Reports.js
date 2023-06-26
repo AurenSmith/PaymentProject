@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     container: {
         margin: 25,
         borderRadius: 25,
-        backgroundColor: '#ffffff',
+        backgroundColor: 'white',
     },
     title: {
         margin: 25,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         marginVertical: 0,
         
         borderRadius: 20,
-        backgroundColor: '#737373',
+        backgroundColor: '#258699',
     },
     scrollDiv: {
         width: '100%',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 
         justifyContent: 'center',
 
-        backgroundColor: '#737373',
+        backgroundColor: '#258699',
         borderRadius: 50,
     },
     viewMore: {
@@ -150,13 +150,23 @@ const styles = StyleSheet.create({
     orderContainer: {
         height: '40%',
         width: '80%',
-        borderRadius: 20,
-        backgroundColor: '#666666',
+        borderRadius: 30,
+        backgroundColor: 'white',
         position: 'absolute',
         top: '25%',
         left: '10%',
         padding: 10,
-        zIndex: 100
+        shadowColor: '#258699',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 20,
+        elevation: 5,
+        
+        
+
     },
     centeredView: {
         flex: 1,
@@ -167,7 +177,7 @@ const styles = StyleSheet.create({
       closeButton: {
         width: '50%',
         height: 30,
-        backgroundColor: '#737373',
+        backgroundColor: '#258699',
         marginLeft: '25%',
         marginTop: 20,
         borderRadius: 20,
@@ -177,7 +187,7 @@ const styles = StyleSheet.create({
      notes: {
         width: '80%',
         height: '30%',
-        backgroundColor: '#737373',
+        backgroundColor: '#258699',
         borderRadius: 15,
         marginLeft: '10%'
       }

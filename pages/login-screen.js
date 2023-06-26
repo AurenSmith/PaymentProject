@@ -24,7 +24,7 @@ function LoginScreen({ navigation }){
 
       db.transaction(tx => {
         tx.executeSql("INSERT INTO Users (name, password) VALUES (jayden, jelly)");
-        Alert.alert('hello');
+        // Alert.alert('hello');
         
       })
       
@@ -61,12 +61,12 @@ function LoginScreen({ navigation }){
               }>
               <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
-              <TouchableOpacity 
+              {/* <TouchableOpacity 
                 style={styles.button}
                 onPress={() => navigation.navigate('Reports-More')  
               }>
               <Text style={styles.buttonText}>Reports More</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             <View style={styles.register}>
               <Text style={styles.registerText}>Not a member?</Text>
               <TouchableOpacity 

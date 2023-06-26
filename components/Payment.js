@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     margin: '7%',
 
     borderRadius: 20,
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
   },
   swapButton: {
     position: 'absolute',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
     borderRadius: 20,
-    backgroundColor: '#ababab',
+    backgroundColor: 'black',
   },
   swapText: {
     textAlign: 'center',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     paddingLeft: '7%',
     borderRadius: 25,
 
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
     color: '#ffffff',
     fontSize: 20,
     fontWeight: 'bold',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
 
     textAlignVertical: 'top',
 
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
     color: '#ffffff',
     fontSize: 14,
     fontWeight: 'bold',
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
     borderRadius: 25,
-    backgroundColor: '#737373',
+    backgroundColor: '#258699',
   },
   nextText: {
     textAlign: 'center',
