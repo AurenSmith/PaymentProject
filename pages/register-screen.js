@@ -1,17 +1,93 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView} from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from 'expo-checkbox';
+import * as SQLite from 'expo-sqlite';
+import * as FileSystem from 'expo-file-system';
+
+
+
+{/* database stuff */}
+const db = SQLite.openDatabase('userDatabase.db');
 
 export default function RegisterScreen({navigation, route}){
-    const [isChecked, setChecked] = useState(false);
+
+  const [isChecked, setChecked] = useState(false);
+  const [currentFirstName, setCurrentFirstName] = useState(undefined);
+  const [currentLastName, setCurrentLastName] = useState(undefined);
+  const [currentEmail, setCurrentEmail] = useState(undefined);
+  const [currentPhone, setCurrentPhone] = useState(undefined);
+  const [currentCompany, setCurrentCompany] = useState(undefined);
+  const [currentPassword, setCurrentPassword] = useState(undefined);
+
+  const [users, setUsers] = useState([]); // HERE
+
+
+
+  useEffect(() => {
+    db.transaction((tx) => {
+      // tx.executeSql('DROP TABLE users');
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, firstname TEXT, lastname TEXT, phone INTEGER, company TEXT)');
+    });
+
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM users', null, 
+        (txObj, resultSet) => {
+          setUsers(resultSet.rows._array);
+          console.log("import")
+        },
+        (txObj, error) => console.log(error)
+      );
+    });
+  }, []);
+  const pushToDB = () => {
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO users (email, password, firstname, lastname, phone, company) values (?, ?, ?, ?, ?, ?)', [currentEmail, currentPassword, currentFirstName, currentLastName, currentPhone, currentCompany],
+        (txObj, resultSet) => {
+          let existingUsers = [...users];    // HERE
+          existingUsers.push({id: resultSet.insertId, email: currentEmail, firstname: currentFirstName, lastname: currentLastName, phone: currentPhone, company: currentCompany});
+          setUsers(existingUsers);
+          setCurrentEmail(undefined);
+          setCurrentFirstName(undefined);
+          setCurrentLastName(undefined);
+          setCurrentPhone(undefined);
+          setCurrentFirstName(undefined);
+        },
+        (txObj, error) => console.log(error)
+      );
+    });
+  }
+
+  const handlePress = () => {
+    
+    if(isChecked){
+      alert("thank you "+currentFirstName+" you may now sign in");
+      pushToDB();
+      navigation.replace('Login');
+    }else{
+      Alert.alert("Error", "You must agree to the terms and conditons!");
+    }
+    
+  }
+
+    
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.registerDetails}>
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput 
           style={styles.input}
           placeholder='example@gmail.com'
           placeholderTextColor='white'
+          onChangeText={setCurrentEmail}
+          />
+          <Text style={styles.inputLabel}>Password</Text>
+          <TextInput 
+          style={styles.input}
+          placeholder='********'
+          placeholderTextColor='white'
+          onChangeText={setCurrentPassword}
+          secureTextEntry={true}
           />
           <View style={{flexDirection: 'row'}}>
             <View>
@@ -20,6 +96,7 @@ export default function RegisterScreen({navigation, route}){
             style={[styles.inputSmall, styles.fName]}
             placeholder='eg John'
             placeholderTextColor='white'
+            onChangeText={setCurrentFirstName}
             />
             </View>
             <View>
@@ -28,6 +105,7 @@ export default function RegisterScreen({navigation, route}){
             style={styles.inputSmall}
             placeholder='eg Doe'
             placeholderTextColor='white'
+            onChangeText={setCurrentLastName}
             />
             </View>
           </View>
@@ -37,14 +115,17 @@ export default function RegisterScreen({navigation, route}){
           placeholder='021 234 5678'
           keyboardType='numeric'
           placeholderTextColor='white'
+          onChangeText={setCurrentPhone}
           />
           <Text style={styles.inputLabel}>Company Name</Text>
           <TextInput 
           style={styles.input}
+          onChangeText={setCurrentCompany}
           />
           <View style={styles.terms}>
             <Text style ={{fontWeight: 'bold', marginBottom: 10}}>Terms & Conditions</Text>
-            <Text style={{textAlign: 'center'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            <Text style={{textAlign: 'center'}}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
@@ -62,32 +143,19 @@ export default function RegisterScreen({navigation, route}){
           
           
         </View>
-        <TouchableOpacity 
-            style={styles.registerButton}
-            onPress={()=>Alert.alert(
-              'Sign Up Successful.', 
-              'Thank you User. Please log in.',
-              [
-                {
-                  text: 'Ok',
-                  onPress: () => navigation.navigate('Login')
-                }
-              ]
-
-              )
-                          
-            }>
+        <TouchableOpacity style={styles.registerButton} onPress={handlePress} >
               <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
-      </View>
+      </ScrollView>
     )
   }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         paddingTop: 50,
         alignItems: 'center',
+
       },
       inputLabel: {
         marginLeft: 10,
@@ -121,10 +189,6 @@ const styles = StyleSheet.create({
         marginTop: 0,
         padding: 5,
         alignItems: 'center',
-        
-        
-        
-
       },
       fName: {
         marginRight: 40 
@@ -146,6 +210,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 30,
         marginTop: 20,
+        marginBottom: 20
       },
       buttonText: {
         color: 'white',
