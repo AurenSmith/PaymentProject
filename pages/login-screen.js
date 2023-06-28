@@ -1,34 +1,65 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
 
 // import SQLite from 'react-native-sqlite-storage';
+import { useState, useEffect } from 'react';
 import * as SQLite from 'expo-sqlite';
-import { useState } from 'react';
 
 
 
 
-const db = SQLite.openDatabase(
-  'login.db', 
-  
-  );
 
 
-  
 
 
-  
+export default function LoginScreen({ navigation }){
+      const db = SQLite.openDatabase('userDatabase.db');
+      const [emailInput, setEmailInput] = useState(undefined);
+      const [passwordInput, setPasswordInput] = useState(undefined);
+      const [users, setUsers] = useState([[]]);
+      // for logged in user
+      const [currentUserEmail, setCurrentUserEmail] = useState(undefined);
+      const [currentUserFirstName, setCurrentUserFirstName] = useState(undefined);
+      const [currentUserLastName, setCurrentLastName] = useState(undefined);
+      const [currentUserCompany, setCurrentUserCompany] = useState(undefined);
 
 
-function LoginScreen({ navigation }){
-      const [name, setName] = useState('undefined');
 
-      db.transaction(tx => {
-        tx.executeSql("INSERT INTO Users (name, password) VALUES (jayden, jelly)");
-        // Alert.alert('hello');
-        
-      })
       
+      useEffect(()=>{
+        db.transaction(tx => {
+          tx.executeSql('SELECT * FROM users', null, 
+            (txObj, resultSet) => {
+              setUsers(resultSet.rows._array);
+              console.log("imported database")
+            },
+            (txObj, error) => console.log(error)
+          );
+        });
+       
+        
+      }, []);
 
+      // not setting current user first name at first login, works fine when going to homescreen and then going back to login
+      const login = () => {
+        var found;
+        users.map((user)=>{
+          if(user.email == emailInput && user.password == passwordInput){
+            found = true;
+            setCurrentUserFirstName(user.firstname);
+            setCurrentLastName(user.lastname);
+            setCurrentUserEmail(user.email);
+            setCurrentUserCompany(user.company);
+          }
+        })
+        if(found == true){
+          Alert.alert("Successful Login", "Welcome back "+currentUserFirstName+"");
+          navigation.navigate('HomeScreen');
+        }else{
+          Alert.alert("Error", "No User Found!")
+          console.log("no user found");
+        }
+      }
+      
       return (
         <View style={styles.container}>
           <View style={styles.login}>
@@ -37,7 +68,7 @@ function LoginScreen({ navigation }){
             style={styles.input}
             placeholder={'example@gmail.com'}
             placeholderTextColor='white'
-            // onChangeText = {(val) => setName(val)}
+            onChangeText = {setEmailInput}
             />
             <Text style={styles.inputLabel}>Password</Text>
             <TextInput 
@@ -45,28 +76,16 @@ function LoginScreen({ navigation }){
             placeholder='********'
             placeholderTextColor='white'
             secureTextEntry={true}
+            onChangeText={setPasswordInput}
             />  
           </View>
               <TouchableOpacity 
                 style={styles.button}
-                onPress={() => Alert.alert(
-                  'Login Successful',
-                  'Welcome Back User',
-                  [
-                    {
-                      text: 'Ok',
-                      onPress: () => navigation.navigate('HomeScreen')
-                    }
-                  ])
-              }>
+                onPress={login}
+              >
               <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
-              {/* <TouchableOpacity 
-                style={styles.button}
-                onPress={() => navigation.navigate('Reports-More')  
-              }>
-              <Text style={styles.buttonText}>Reports More</Text>
-              </TouchableOpacity> */}
+              
             <View style={styles.register}>
               <Text style={styles.registerText}>Not a member?</Text>
               <TouchableOpacity 
@@ -81,7 +100,6 @@ function LoginScreen({ navigation }){
         
       );
     }
-    export default LoginScreen;
 
 
 
