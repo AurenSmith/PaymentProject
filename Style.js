@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     height: 275,
   },
   myCard: {
-    paddingBottom: 25,
+    width: '100%',
   },
   cardButtons: {
     position: 'absolute',

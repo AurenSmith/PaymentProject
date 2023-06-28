@@ -1,13 +1,8 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
-import { useState, useRef } from 'react';
+import * as SQLite from 'expo-sqlite';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
-
-
-
-
-
 
 const Test = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -18,7 +13,7 @@ const Test = () => {
                 visible={modalVisible}
                 onRequestClose={() => {
                 setModalVisible(!modalVisible);
-             }}>
+            }}>
                 <View style={styles.centeredView}>
                     <View style = {styles.orderContainer}>
                         <Text style={{fontSize: 16}}>Recipient</Text>
@@ -36,27 +31,46 @@ const Test = () => {
                             <Text style={{color: 'white', fontWeight: 'bold'}}>Close</Text>
                         </TouchableOpacity>
                     </View>
-                 </View>
+                </View>
             </Modal>
             <TouchableOpacity style={styles.textDiv} onPress={()=>setModalVisible(true)}>
                 <Text style={[styles.myText, {color: '#A7A7A7'}]}>1 Jan</Text>
                 <Text style={[styles.myText, {color: '#FFFFFF'}]}>Recipient</Text>
                 <Text style={[styles.myText, {color: '#FFFFFF'}]}>-$0.00</Text>
             </TouchableOpacity>
-
         </View>
-
-
-
-
-        
-        
-        
     );
 };
 
 export default function Reports() {
     const navigation = useNavigation();
+    const db = SQLite.openDatabase('reports.db');
+    const [loading, setLoading] = useState(true);
+    const [tests, setTests] = useState([]);
+    const [current, setCurrent] = useState(undefined);
+
+    useEffect(() => {
+        db.transaction(tx => {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS tests (id INTEGER PRIMARY KEY AUTOINCREMENT, test TEXT)')
+        });
+
+        db.transaction(tx => {
+            tx.executeSql('SELECT * FROM tests', null, 
+                (txObj, resultSet) => setTests(resultSet.rows._array),
+                (txObj, error) => console.log(error)
+            );
+        });
+
+        setLoading(false);
+    }, []);
+
+    if(loading) {
+        return (
+            <View style={styles.container}>
+                <Text>Loading Names...</Text>
+            </View>
+        );
+    }
     
     return (
         <View style={styles.container}>
@@ -78,6 +92,9 @@ export default function Reports() {
                     <Test />
 
                     {/* scrollable content */}
+                    <Test />
+                    <Test />
+                    <Test />
                     <Test />
                     <Test />
                     <Test />

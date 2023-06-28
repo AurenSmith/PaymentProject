@@ -2,9 +2,15 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function AssetExample() {
+export default function CardAsset() {
+  const [isOpen, setOpen] = useState(false);
+
+  const handleExpand = () => {
+      setOpen(!isOpen);
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handleExpand}>
       <Text style={styles.myTitle}>
         card
       </Text>
@@ -14,20 +20,26 @@ export default function AssetExample() {
         <Text style={styles.date}>12/12</Text>
         <Text style={styles.name}>JOHN DOE</Text>
       </View>
-    </View>
+
+      {isOpen && (
+        <View style={styles.menu}>
+          <TouchableOpacity style={styles.moreButton}>
+            <Text style={styles.moreText}>Hello World!</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     alignItems: 'flex-start',
-    padding: 24,
-    width: 325,
-    height: 200,
+    padding: 25,
     backgroundColor: '#258699',
     borderRadius: 20,
     margin: 25,
-    marginBottom: 0,
     borderWidth: 5,
     borderColor: '#258691',
     overflow: 'visible',
@@ -56,4 +68,26 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#ffffff",
   },
+  menu: {
+    flexGrow: 1,
+    width: '100%',
+    aspectRatio: 0.75,
+    justifyContent: 'flex-start',
+    backgroundColor: '#258699',
+  },
+  moreButton: {
+    position: 'absolute',
+    bottom: 0,
+    aspectRatio: 5.5,
+    width: '100%',
+    backgroundColor: "#ffffff",
+    borderRadius: 25,
+    justifyContent: 'center',
+  },
+  moreText: {
+    color: '#258699',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+  }
 });
