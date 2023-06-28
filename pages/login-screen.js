@@ -54,6 +54,7 @@ export default function LoginScreen({ navigation }){
         if(found == true){
           Alert.alert("Successful Login", "Welcome back "+currentUserFirstName+"");
           navigation.navigate('HomeScreen');
+          
         }else{
           Alert.alert("Error", "No User Found!")
           console.log("no user found");
