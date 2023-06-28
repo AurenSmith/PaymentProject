@@ -58,8 +58,10 @@ export default function HomeScreen() {
         <View style={styles.myCard}>
           <CardAsset />
         </View>
-
-        <Payment />
+        <View style={styles.payment}>
+          <Payment />
+        </View>
+        
 
         <Reports />
         
