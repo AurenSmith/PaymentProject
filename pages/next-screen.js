@@ -1,47 +1,71 @@
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground} from 'react-native';
 import PieChartAsset from '../PieChartAsset';
-
-
+import { useNavigation } from '@react-navigation/native';
+import * as SQLite from 'expo-sqlite';
+import { useState, useEffect } from 'react';
 
 function NextScreen() {
-  
-    return (
-      <View style={styles.container}>
-        <View  style={{flexDirection: 'row'}}>
-          <PieChartAsset />
-          <View style={styles.square}>
-            <Text style={styles.nextAmountDollars}>-$0.00</Text>
-            <Text style={styles.nextAmountPercentage}>-0.00%</Text>
-          </View>
-        </View>
-        <View style={styles.order}></View>
-        <View style={{flexDirection: 'row', marginTop: 20}}>
-          <TouchableOpacity style={styles.buttonSmall}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonMedium}>
-            <Text style={styles.buttonText}>Add to Group Order</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{flexDirection: 'row', marginTop: 20}}>
-          <TouchableOpacity style={styles.buttonSquare}>
-            
+  const db = SQLite.openDatabase('payment.db');
+  const navigation = useNavigation();
 
-            
+  const [items, setItems] = useState([]);
 
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLarge}>
-            <Text style={styles.buttonText}>Generate Purchase</Text>
-          </TouchableOpacity>
-          
+  useEffect(()=>{
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM pay', null, 
+        (txObj, resultSet) => setItems(resultSet.rows._array),
+        (txObj, error) => console.log(error)
+      );
+    });
+  }, []);
+
+  var myAmount;
+  var myDetails;
+  var myName;
+  items.map((item)=>{
+    myAmount = item.amount;
+    myDetails = item.details;
+    myName = item.name;
+  })
+
+  const handleDrop = () => {
+    db.transaction((tx) => {
+      tx.executeSql('DROP TABLE pay');
+    })
+  }
+
+  return (
+    <View style={styles.container}>
+      <View  style={{flexDirection: 'row'}}>
+        <PieChartAsset />
+        <View style={styles.square}>
+          <Text style={styles.nextAmountDollars}>{myAmount}</Text>
+          <Text style={styles.nextAmountPercentage}>-0.00%</Text>
         </View>
-        
-        <Text style={{marginTop: 20}}>Process Individual Purchase Order</Text>
-        
-        
+      </View>
+      <View style={styles.order}>
+        <Text style={styles.nameText}>{myName}</Text>
+        <Text style={styles.detailsText}>{myDetails}</Text>
+      </View>
+      <View style={{flexDirection: 'row', marginTop: 20}}>
+        <TouchableOpacity style={styles.buttonSmall} onPress={()=>navigation.navigate('HomeScreen')}>
+          <Text style={styles.buttonText}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonMedium} onPress={handleDrop}>
+          <Text style={styles.buttonText}>Add to Group Order</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{flexDirection: 'row', marginTop: 20}}>
+        <TouchableOpacity style={styles.buttonSquare}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonLarge}>
+          <Text style={styles.buttonText}>Generate Purchase</Text>
+        </TouchableOpacity>
       </View>
       
-    )
+      <Text style={{marginTop: 20}}>Process Individual Purchase Order</Text>
+    </View>
+  )
   }
 export default NextScreen;
   const styles = StyleSheet.create({
@@ -117,6 +141,10 @@ export default NextScreen;
         justifyContent: 'center',
         marginRight: 15
       },
-      
-      
+      detailsText: {
+
+      },
+      nameText: {
+        
+      }
   })
