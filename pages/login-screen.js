@@ -4,13 +4,6 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert} from 'react
 import { useState, useEffect } from 'react';
 import * as SQLite from 'expo-sqlite';
 
-
-
-
-
-
-
-
 export default function LoginScreen({ navigation }){
       const db = SQLite.openDatabase('userDatabase.db');
       const [emailInput, setEmailInput] = useState(undefined);
