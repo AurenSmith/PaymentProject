@@ -4,73 +4,61 @@ import * as SQLite from 'expo-sqlite';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-const Test = () => {
-    const [modalVisible, setModalVisible] = useState(false);
-    return (
-        <View>
-            <Modal
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                setModalVisible(!modalVisible);
-            }}>
-                <View style={styles.centeredView}>
-                    <View style = {styles.orderContainer}>
-                        <Text style={{fontSize: 16}}>Recipient</Text>
-                        <Text style={{fontSize: 20, marginBottom: 10}}>$-0.00</Text>
-                        <Text style={{fontSize: 14, marginBottom: 10}}>12:00pm, Mon 31 January 2023 </Text>
-                        <Text style={{fontSize: 12, fontWeight: 'bold'}}>Details </Text>
-                        <Text style={{fontSize: 12, marginBottom: 10}}>Card Number: 1234 **** **** 1234</Text>
-                        <Text style={{fontSize: 12}}>Notes</Text>
-                        <View style={styles.notes} />
-                        {/*close button */}
-                        <TouchableOpacity 
-                        style={styles.closeButton}
-                        onPress={onPress=()=>setModalVisible(false)}
-                        >
-                            <Text style={{color: 'white', fontWeight: 'bold'}}>Close</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Modal>
-            <TouchableOpacity style={styles.textDiv} onPress={()=>setModalVisible(true)}>
-                <Text style={[styles.myText, {color: '#A7A7A7'}]}>1 Jan</Text>
-                <Text style={[styles.myText, {color: '#FFFFFF'}]}>Recipient</Text>
-                <Text style={[styles.myText, {color: '#FFFFFF'}]}>-$0.00</Text>
-            </TouchableOpacity>
-        </View>
-    );
-};
-
 export default function Reports() {
     const navigation = useNavigation();
-    const db = SQLite.openDatabase('reports.db');
-    const [loading, setLoading] = useState(true);
-    const [tests, setTests] = useState([]);
-    const [current, setCurrent] = useState(undefined);
 
-    useEffect(() => {
+    const db = SQLite.openDatabase('payment.db');
+    const [items, setItems] = useState([]);
+
+    useEffect(()=>{
         db.transaction(tx => {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS tests (id INTEGER PRIMARY KEY AUTOINCREMENT, test TEXT)')
+          tx.executeSql('SELECT * FROM pay', null, 
+            (txObj, resultSet) => setItems(resultSet.rows._array),
+            (txObj, error) => console.log(error)
+          );
         });
-
-        db.transaction(tx => {
-            tx.executeSql('SELECT * FROM tests', null, 
-                (txObj, resultSet) => setTests(resultSet.rows._array),
-                (txObj, error) => console.log(error)
-            );
-        });
-
-        setLoading(false);
     }, []);
 
-    if(loading) {
-        return (
-            <View style={styles.container}>
-                <Text>Loading Names...</Text>
-            </View>
-        );
-    }
+    const showItems = () => {
+        const [modalVisible, setModalVisible] = useState(false);
+    
+        return items.map((items) => {
+            return (
+                <View>
+                    <Modal
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                    }}>
+                        <View style={styles.centeredView}>
+                            <View style = {styles.orderContainer}>
+                                <Text style={{fontSize: 16}}>{items.name}</Text>
+                                <Text style={{fontSize: 20, marginBottom: 10}}>{items.amount}</Text>
+                                <Text style={{fontSize: 14, marginBottom: 10}}>12:00pm, Mon 1 January 2023 </Text>
+                                <Text style={{fontSize: 12, fontWeight: 'bold'}}>Details </Text>
+                                <Text style={{fontSize: 12, marginBottom: 10}}>Card Number: 1234 **** **** 1234</Text>
+                                <Text style={{fontSize: 12}}>Notes</Text>
+                                <View style={styles.notes}><Text>{items.details}</Text></View>
+                                {/*close button */}
+                                <TouchableOpacity 
+                                style={styles.closeButton}
+                                onPress={onPress=()=>setModalVisible(false)}
+                                >
+                                    <Text style={{color: 'white', fontWeight: 'bold'}}>Close</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
+                    <TouchableOpacity style={styles.textDiv} onPress={()=>setModalVisible(true)}>
+                        <Text style={[styles.myText, {color: '#A7A7A7'}]}>1 Jan</Text>
+                        <Text style={[styles.myText, {color: '#ecf0f1'}]}>{items.name}</Text>
+                        <Text style={[styles.myText, {color: '#ecf0f1'}]}>{items.amount}</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        });
+    };
     
     return (
         <View style={styles.container}>
@@ -78,28 +66,8 @@ export default function Reports() {
 
             <View style={styles.myDiv}>
                 <ScrollView contentContainerStyle={styles.scrollDiv}>
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-
                     {/* scrollable content */}
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
-                    <Test />
+                    {showItems()}
                 </ScrollView>
             </View>
 
@@ -107,11 +75,6 @@ export default function Reports() {
                 <Text style={styles.viewMore}>View More</Text>
             </TouchableOpacity>
         </View>
-
-        
-
-
-
     );
 }
     
@@ -181,17 +144,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 20,
         elevation: 5,
-        
-        
-
     },
     centeredView: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 22,
-      },
-      closeButton: {
+    },
+    closeButton: {
         width: '50%',
         height: 30,
         backgroundColor: '#258699',
@@ -200,14 +160,29 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center'
-     },
-     notes: {
+    },
+    notes: {
         width: '80%',
         height: '30%',
         backgroundColor: '#258699',
         borderRadius: 15,
         marginLeft: '10%'
-      }
-    
+    },
+    row: {
 
+    },
+    textDiv: {
+        marginHorizontal: 0,
+        margin: 4,
+        padding: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+
+        backgroundColor: '#292f34',
+    },
+    myText: {
+        marginHorizontal: 8,
+        fontWeight: 'bold',
+        fontSize: 16,
+    }
 });

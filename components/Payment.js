@@ -1,22 +1,60 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CardAsset from '../CardAsset';
+import * as SQLite from 'expo-sqlite';
 
+const db = SQLite.openDatabase('payment.db');
 
 export default function Payment() {
   const navigation = useNavigation();
   const [isOpen, setOpen] = useState(false);
 
-  
+  const [items, setItems] = useState([]);
+  const [myAmount, setAmount] = useState(undefined);
+  const [myDetails, setDetails] = useState(undefined);
+  const [myName, setName] = useState(undefined);
 
+  useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS pay (id INTEGER PRIMARY KEY, amount TEXT, details TEXT, name TEXT)');
+    });
 
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM pay', null, 
+        (txObj, resultSet) => setItems(resultSet.rows._array),
+        (txObj, error) => console.log(error)
+      );
+    });
+  }, []);
 
+  const addItem = () => {
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO pay (amount, details, name) values (?, ?, ?)', [myAmount, myDetails, myName],
+        (txObj, resultSet) => {
+          let existingItems = [...items];
+          existingItems.push({ id: resultSet.insertId, amount: myAmount, details: myDetails, name: myName});
+          setItems(existingItems);
+          setAmount(undefined);
+          setDetails(undefined);
+          setName(undefined);
+        },
+        (txObj, error) => console.log(error)
+      );
+    });
+
+    navigation.navigate('Next');
+  }
+
+  const handleNext = () => {
+    addItem();
+  }
 
   const handleExpand = () => {
       setOpen(!isOpen);
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.card} onPress={handleExpand}>
@@ -26,15 +64,15 @@ export default function Payment() {
       </View>
       <View>
       <Text style={styles.textTag}>Amount</Text>
-      <TextInput style={styles.amount} placeholder="$0.00" placeholderTextColor="#ffffff"></TextInput>
+      <TextInput onChangeText={setAmount} value={myAmount} style={styles.amount} placeholder="$0.00" placeholderTextColor="#ffffff"></TextInput>
 
       <Text style={styles.textTag}>Details</Text>
-      <TextInput style={styles.details} multiline={true} placeholder="Details" placeholderTextColor="#ffffff"></TextInput>
+      <TextInput onChangeText={setDetails} value={myDetails} style={styles.details} multiline={true} placeholder="Details" placeholderTextColor="#ffffff"></TextInput>
 
       <Text style={styles.textTag}>Recipient</Text>
-      <TextInput style={styles.amount} placeholder="Recipient" placeholderTextColor="#ffffff"></TextInput>
+      <TextInput onChangeText={setName} value={myName} style={styles.amount} placeholder="Recipient" placeholderTextColor="#ffffff"></TextInput>
 
-      <TouchableOpacity style={styles.next} onPress={()=>navigation.navigate('Next')}>
+      <TouchableOpacity style={styles.next} onPress={handleNext}>
         <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
 
