@@ -67,9 +67,9 @@ export default function CardAsset() {
       {isOpen && (
         <View style={styles.menu}>
           <View style={styles.inputs}>
-            <TextInput style={styles.textInput} placeholder='Number' placeholderTextColor='#258699' onChangeText={setCardNumber}/>
-            <TextInput style={styles.textInput} placeholder='Name' placeholderTextColor='#258699' onChangeText={setCardName}/>
-            <TextInput style={styles.textInput} placeholder='Expiry Date' placeholderTextColor='#258699' onChangeText={setCardDate}/>
+            <TextInput style={styles.textInput} placeholder='Number' placeholderTextColor='#292f34' onChangeText={setCardNumber}/>
+            <TextInput style={styles.textInput} placeholder='Name' placeholderTextColor='#292f34' onChangeText={setCardName}/>
+            <TextInput style={styles.textInput} placeholder='Expiry Date' placeholderTextColor='#292f34' onChangeText={setCardDate}/>
           </View>
           
 
@@ -87,12 +87,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'flex-start',
     padding: 25,
-    backgroundColor: '#258699',
+    backgroundColor: '#010b13',
     borderRadius: 20,
     margin: 25,
     borderWidth: 5,
-    borderColor: '#258691',
+    
     overflow: 'visible',
+    elevation: 20
   },
   myTitle: {
     fontSize: 30,
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     width: '100%',
     aspectRatio: 0.75,
     justifyContent: 'flex-start',
-    backgroundColor: '#258699',
+    backgroundColor: '#010b13',
     
   },
   moreButton: {
@@ -131,12 +132,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     aspectRatio: 5.5,
     width: '100%',
-    backgroundColor: "#ffffff",
+    backgroundColor: "#ecf0f1",
     borderRadius: 25,
     justifyContent: 'center',
   },
   moreText: {
-    color: '#258699',
+    color: '#292f34',
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 16,
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     aspectRatio: 5.5,
     width: '100%',
-    backgroundColor: "#ffffff",
+    backgroundColor: "#ecf0f1",
     borderRadius: 25,
     justifyContent: 'center',
     textAlign: 'center',

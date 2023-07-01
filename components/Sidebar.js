@@ -57,17 +57,18 @@ const styles = StyleSheet.create({
     left: 0,
     width: '80%',
     height: 800,
-
+    elevation: 5,
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
 
     backgroundColor: 'white',
+    
   }, 
   buttons: {
     marginVertical: 15,
     justifyContent: 'center',
     alignItems: 'center',
-
+    elevation: 10,
     width: '50%',
     aspectRatio: 2.5, //3/2
     // borderTopRightRadius: '16.67% 50%',
@@ -75,13 +76,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 100,
     borderBottomRightRadius: 100,
 
-    backgroundColor: '#258699',
+    backgroundColor: '#292f34',
   },
   buttonText: {
     padding: 10,
     paddingRight: 20,
 
-    color: 'white',
+    color: '#ecf0f1',
     fontSize: 20,
   },
 });

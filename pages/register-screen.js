@@ -73,40 +73,40 @@ export default function RegisterScreen({navigation, route}){
     
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.registerDetails}>
+        {/* <View style={styles.registerDetails}> */}
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput 
           style={styles.input}
           placeholder='example@gmail.com'
-          placeholderTextColor='white'
+          placeholderTextColor='#ecf0f1'
           onChangeText={setCurrentEmail}
           />
           <Text style={styles.inputLabel}>Password</Text>
           <TextInput 
           style={styles.input}
           placeholder='********'
-          placeholderTextColor='white'
+          placeholderTextColor='#ecf0f1'
           onChangeText={setCurrentPassword}
           secureTextEntry={true}
           />
-          <View style={{flexDirection: 'row'}}>
-            <View>
-            <Text style={styles.inputLabel}>First Name</Text>
-            <TextInput 
-            style={[styles.inputSmall, styles.fName]}
-            placeholder='eg John'
-            placeholderTextColor='white'
-            onChangeText={setCurrentFirstName}
-            />
+          <View style={styles.row}>
+            <View style={styles.column}>
+              <Text style={styles.inputLabel}>First Name</Text>
+              <TextInput 
+              style={[styles.inputSmall, styles.fName]}
+              placeholder='eg John'
+              placeholderTextColor='#ecf0f1'
+              onChangeText={setCurrentFirstName}
+              />
             </View>
-            <View>
+            <View style={styles.column}>
               <Text style={styles.inputLabel}>Last Name</Text>
               <TextInput 
-            style={styles.inputSmall}
-            placeholder='eg Doe'
-            placeholderTextColor='white'
-            onChangeText={setCurrentLastName}
-            />
+              style={styles.inputSmall}
+              placeholder='eg Doe'
+              placeholderTextColor='#ecf0f1'
+              onChangeText={setCurrentLastName}
+              />
             </View>
           </View>
           <Text style={styles.inputLabel}>Phone Number</Text>
@@ -114,7 +114,7 @@ export default function RegisterScreen({navigation, route}){
           style={styles.input}
           placeholder='021 234 5678'
           keyboardType='numeric'
-          placeholderTextColor='white'
+          placeholderTextColor='#ecf0f1'
           onChangeText={setCurrentPhone}
           />
           <Text style={styles.inputLabel}>Company Name</Text>
@@ -123,8 +123,8 @@ export default function RegisterScreen({navigation, route}){
           onChangeText={setCurrentCompany}
           />
           <View style={styles.terms}>
-            <Text style ={{fontWeight: 'bold', marginBottom: 10}}>Terms & Conditions</Text>
-            <Text style={{textAlign: 'center'}}>
+            <Text style ={[{fontWeight: 'bold', marginBottom: 10, paddingTop: 10}, styles.termsText]}>Terms & Conditions</Text>
+            <Text style={styles.termsText}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -142,7 +142,7 @@ export default function RegisterScreen({navigation, route}){
           </View>
           
           
-        </View>
+        
         <TouchableOpacity style={styles.registerButton} onPress={handlePress} >
               <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
@@ -155,33 +155,48 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         paddingTop: 50,
         alignItems: 'center',
+        backgroundColor: '#ecf0f1',
+        width: '100%',
+        alignItems: 'center'
 
       },
       inputLabel: {
-        marginLeft: 10,
+        textAlign: 'center',
+        marginBottom: 10
       },
+      row: {
+        flexDirection: 'row',
+        width: '80%',
+        
+      },
+      column: {
+        width: '50%',
+        alignItems: 'center'
+      },
+
       input: {
-        backgroundColor: '#258699',
+        backgroundColor: '#292f34',
         borderRadius: 30,
         marginBottom: 20,
-        height: 40,
-        width: 300,
+        aspectRatio: 5.5,
+        width: '75%',
         padding: 5,
         textAlign: 'center',
-        color: 'white'
+        color: 'white',
+        elevation: 5,
       },
       inputSmall: {
-        backgroundColor: '#258699',
+        backgroundColor: '#292f34',
         borderRadius: 30,
         marginBottom: 20,
-        height: 40,
-        width: 130,
-        marginTop: 0,
+        aspectRatio: 2.7,
+        width: '90%',
         padding: 5,
         textAlign: 'center',
+        elevation: 5,
       },
       terms: {
-        backgroundColor: '#258699',
+        backgroundColor: '#292f34',
         borderRadius: 30,
         marginBottom: 20,
         height: 200,
@@ -189,31 +204,34 @@ const styles = StyleSheet.create({
         marginTop: 0,
         padding: 5,
         alignItems: 'center',
+        elevation: 5,
       },
-      fName: {
-        marginRight: 40 
+      termsText: {
+        color: '#ecf0f1',
+        textAlign: 'center'
       },
       checkbox: {
         marginLeft: 30,
-        marginRight: 10
+        marginRight: 10,
       },
       checkboxRow: {
         flexDirection: 'row',
         alignItems: 'center',
       },
       registerButton: {
-        width: 200,
-        height: 40,
-        backgroundColor: '#258699',
+        width: '55%',
+        aspectRatio: 4.2,
+        backgroundColor: '#010b13',
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        elevation: 5,
       },
       buttonText: {
-        color: 'white',
+        color: '#ecf0f1',
         fontWeight: 'bold',
         fontSize: 16
       }

@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -51,10 +51,10 @@ export default function HomeScreen() {
           <Text style={local.buttonText}>Other</Text>
         </TouchableOpacity>
         <View style={{flexDirection: 'row', marginTop: 20, paddingBottom: 30}}>
-            <TouchableOpacity style={local.buttonSquare}>
+            <TouchableOpacity style={local.buttonSquare} onPress={()=>Alert.alert('Report', 'Report Exported')}>
             </TouchableOpacity>
-            <TouchableOpacity style={local.button}>
-              <Text style={local.buttonText}>Generate Purchase</Text>
+            <TouchableOpacity style={local.button} onPress={()=>Alert.alert('Report', 'Report Generated')}>
+              <Text style={local.buttonText}>Generate Report</Text>
             </TouchableOpacity>
           </View>
 
@@ -121,13 +121,13 @@ const local = StyleSheet.create({
     },
 
     item: {
-      color: 'white',
+      color: '#ecf0f1',
       fontWeight: 'bold'
     },
     button: {
       width: 200,
       height: 40,
-      backgroundColor: '#258699',
+      backgroundColor: '#010b13',
       padding: 10,
       alignItems: 'center',
       justifyContent: 'center',
@@ -135,12 +135,12 @@ const local = StyleSheet.create({
       
     },
     buttonText: {
-      color: 'white',
+      color: '#ecf0f1',
       fontWeight: 'bold',
       fontSize: 16
     },
     buttonSquare: {
-      backgroundColor: 'black',
+      backgroundColor: '#010b13',
       borderRadius: 15,
       width: 40,
       height: 40,

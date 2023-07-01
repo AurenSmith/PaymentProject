@@ -82,7 +82,7 @@ export default function HomeScreen() {
           >
             {/* close live chat button */}
             <TouchableOpacity onPress={handleLiveChatClose} style={styles.liveChatCloseButton}>
-              <FontAwesome name="times-circle-o" size={28} style={styles.liveChatCloseButtonText} />
+              <FontAwesome name="times-circle-o" size={28}  style={styles.liveChatCloseButtonText} />
             </TouchableOpacity>
 
             {/* top bar */}
