@@ -34,6 +34,10 @@ function NextScreen() {
     })
   }
 
+  const generatePurchase = () => {
+    navigation.replace('HomeScreen');
+  }
+
   return (
     <View style={styles.container}>
       <View  style={{flexDirection: 'row'}}>
@@ -58,7 +62,7 @@ function NextScreen() {
       <View style={{flexDirection: 'row', marginTop: 20}}>
         <TouchableOpacity style={styles.buttonSquare}>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonLarge}>
+        <TouchableOpacity style={styles.buttonLarge} onPress={generatePurchase}>
           <Text style={styles.buttonText}>Generate Purchase</Text>
         </TouchableOpacity>
       </View>
@@ -70,81 +74,91 @@ function NextScreen() {
 export default NextScreen;
   const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: '5%',
-        alignItems: 'center',
+      flex: 1,
+      paddingTop: '5%',
+      alignItems: 'center',
+      
+      backgroundColor: '#ecf0f1',
       },
-      square: {
-        width: 130,
-        height: 90,
-        backgroundColor: '#258699',
-        borderRadius: 20,
-        marginTop: 30,
-        marginRight: 20,
-        marginLeft: 20,
-        alignItems: 'center',
-        justifyContent:  'center'
-      },
-      nextAmountDollars: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 20
-      },
-      nextAmountPercentage: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 10
-      },
-      order: {
-        width: '80%',
-        height: '45%',
-        backgroundColor: '#258699',
-        marginTop: 50,
-        borderRadius: 20
-      },
-      buttonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold'
-      },
-      buttonSmall: {
-        backgroundColor: '#258699',
-        borderRadius: 30,
-        width: '25%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 10
-      },
-      buttonMedium: {
-        backgroundColor: '#258699',
-        borderRadius: 30,
-        width: '50%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      buttonLarge: {
-        backgroundColor: '#258699',
-        borderRadius: 30,
-        width: '65%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      buttonSquare: {
-        backgroundColor: 'black',
-        borderRadius: 15,
-        width: 40,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 15
-      },
-      detailsText: {
+    square: {
+      width: 130,
+      height: 90,
+      backgroundColor: '#010b13',
+      borderRadius: 20,
+      marginTop: 30,
+      marginRight: 20,
+      marginLeft: 20,
+      alignItems: 'center',
+      justifyContent:  'center',
+      elevation: 10,
+    },
+    nextAmountDollars: {
+      color: '#ecf0f1',
+      fontWeight: 'bold',
+      fontSize: 20
+    },
+    nextAmountPercentage: {
+      color: '#ecf0f1',
+      fontWeight: 'bold',
+      fontSize: 10
+    },
+    order: {
+      width: '80%',
+      height: '45%',
+      backgroundColor: '#010b13',
+      marginTop: 50,
+      borderRadius: 20,
+      elevation: 10,
+    },
+    buttonText: {
+      color: '#292f34',
+      fontSize: 16,
+      fontWeight: 'bold'
+    },
+    buttonSmall: {
+      backgroundColor: '#ecf0f1',
+      borderRadius: 30,
+      width: '25%',
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 10,
+      elevation: 5,
+    },
+    buttonMedium: {
+      backgroundColor: '#ecf0f1',
+      borderRadius: 30,
+      width: '50%',
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      elevation: 5,
+    },
+    buttonLarge: {
+      backgroundColor: '#ecf0f1',
+      borderRadius: 30,
+      width: '65%',
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      elevation: 5,
+      
+    },
+    buttonSquare: {
+      backgroundColor: '#ecf0f1',
+      borderRadius: 15,
+      width: 40,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 15,
+      elevation: 5,
+      
+    },
+    detailsText: {
 
-      },
-      nameText: {
-        
-      }
+    },
+    nameText: {
+      
+    }
   })

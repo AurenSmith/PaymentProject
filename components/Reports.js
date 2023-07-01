@@ -13,7 +13,11 @@ export default function Reports() {
     useEffect(()=>{
         db.transaction(tx => {
           tx.executeSql('SELECT * FROM pay', null, 
-            (txObj, resultSet) => setItems(resultSet.rows._array),
+            (txObj, resultSet) => {
+                setItems(resultSet.rows._array);
+                console.log('reports imported')
+            }
+            ,
             (txObj, error) => console.log(error)
           );
         });
@@ -33,7 +37,7 @@ export default function Reports() {
                     }}>
                         <View style={styles.centeredView}>
                             <View style = {styles.orderContainer}>
-                                <Text style={{fontSize: 16}}>{items.name}</Text>
+                                <Text style={{fontSize: 16, color: 'black'}}>{items.name}</Text>
                                 <Text style={{fontSize: 20, marginBottom: 10}}>{items.amount}</Text>
                                 <Text style={{fontSize: 14, marginBottom: 10}}>12:00pm, Mon 1 January 2023 </Text>
                                 <Text style={{fontSize: 12, fontWeight: 'bold'}}>Details </Text>
@@ -45,7 +49,7 @@ export default function Reports() {
                                 style={styles.closeButton}
                                 onPress={onPress=()=>setModalVisible(false)}
                                 >
-                                    <Text style={{color: 'white', fontWeight: 'bold'}}>Close</Text>
+                                    <Text style={{color: '#ecf0f1', fontWeight: 'bold'}}>Close</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -82,27 +86,30 @@ const styles = StyleSheet.create({
     container: {
         margin: 25,
         borderRadius: 25,
-        backgroundColor: 'white',
+        backgroundColor: '#010b13',
+        elevation: 10,
     },
     title: {
         margin: 25,
         marginBottom: 0,
         marginLeft: 50,
-        color: '#737373',
+        color: '#ecf0f1',
         fontWeight: '700',
     },
     myDiv: {
         aspectRatio: 0.8,
         margin: 25,
         marginVertical: 0,
-        
+        elevation: 5,
         borderRadius: 20,
-        backgroundColor: '#258699',
+        backgroundColor: '#ecf0f1',
     },
     scrollDiv: {
         width: '100%',
+        elevation: 5,
     },
     textDiv: {
+        
         marginHorizontal: 10,
         marginVertical: 3,
         flexDirection: 'row',
@@ -119,27 +126,29 @@ const styles = StyleSheet.create({
 
         justifyContent: 'center',
 
-        backgroundColor: '#258699',
+        backgroundColor: '#ecf0f1',
         borderRadius: 50,
+        elevation: 5,
     },
     viewMore: {
         textAlign: 'center',
-        color: '#FFFFFF',
-        fontWeight: '700'
+        color: '#010b13',
+        fontWeight: 'bold',
+        
     },
     orderContainer: {
-        height: 300,
+        aspectRatio: 1.1,
         width: '80%',
         borderRadius: 30,
-        backgroundColor: 'white',
+        backgroundColor: '#ecf0f1',
         position: 'absolute',
         top: '25%',
         left: '10%',
         padding: 10,
-        shadowColor: '#258699',
+        shadowColor: '#ecf0f1',
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 10,
         },
         shadowOpacity: 0.5,
         shadowRadius: 20,
@@ -154,19 +163,22 @@ const styles = StyleSheet.create({
     closeButton: {
         width: '50%',
         height: 30,
-        backgroundColor: '#258699',
+        backgroundColor: '#292f34',
         marginLeft: '25%',
         marginTop: 20,
         borderRadius: 20,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 10,
     },
     notes: {
         width: '80%',
         height: '30%',
-        backgroundColor: '#258699',
+        backgroundColor: '#292f34',
         borderRadius: 15,
-        marginLeft: '10%'
+        marginLeft: '10%',
+        padding: 10,
+        elevation: 10,
     },
     row: {
 

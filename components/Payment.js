@@ -64,13 +64,13 @@ export default function Payment() {
       </View>
       <View>
       <Text style={styles.textTag}>Amount</Text>
-      <TextInput onChangeText={setAmount} value={myAmount} style={styles.amount} placeholder="$0.00" placeholderTextColor="#ffffff"></TextInput>
+      <TextInput onChangeText={setAmount} value={myAmount} style={styles.amount} placeholder="$0.00" placeholderTextColor="#292f34"></TextInput>
 
       <Text style={styles.textTag}>Details</Text>
-      <TextInput onChangeText={setDetails} value={myDetails} style={styles.details} multiline={true} placeholder="Details" placeholderTextColor="#ffffff"></TextInput>
+      <TextInput onChangeText={setDetails} value={myDetails} style={styles.details} multiline={true} placeholder="Details" placeholderTextColor="#292f34"></TextInput>
 
       <Text style={styles.textTag}>Recipient</Text>
-      <TextInput onChangeText={setName} value={myName} style={styles.amount} placeholder="Recipient" placeholderTextColor="#ffffff"></TextInput>
+      <TextInput onChangeText={setName} value={myName} style={styles.amount} placeholder="Recipient" placeholderTextColor="#292f34"></TextInput>
 
       <TouchableOpacity style={styles.next} onPress={handleNext}>
         <Text style={styles.nextText}>Next</Text>
@@ -93,16 +93,18 @@ const styles = StyleSheet.create({
     paddingBottom: '7%',
     margin: '7%',
     borderRadius: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#010b13',
     flexGrow: 1,
     textAlignVertical: 'center',
+    elevation: 10,
   },
   card: {
     aspectRatio: 1.774193548387097, //275/155 or 55/31
     width: '86%',
     margin: '7%',
     borderRadius: 20,
-    backgroundColor: '#258699',
+    backgroundColor: '#ecf0f1',
+    elevation: 5,
     
   },
   swapButton: {
@@ -111,24 +113,25 @@ const styles = StyleSheet.create({
     right: 20,
     aspectRatio: 3.25, //130/40 or 13/4
     width: '43%',
+    elevation: 5,
 
     justifyContent: 'center',
     textAlign: 'center',
 
     borderRadius: 20,
-    backgroundColor: 'black',
+    backgroundColor: '#292f34',
   },
   swapText: {
     textAlign: 'center',
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#ecf0f1',
   },
   textTag: {
     aspectRatio: 15, //275/14 or 55/2
     width: '86%',
     marginLeft: '14%',
-    color: '#737373',
+    color: '#ecf0f1',
     fontWeight: 'bold',
     fontSize: 14,
   },
@@ -139,10 +142,11 @@ const styles = StyleSheet.create({
     marginBottom: '7%',
     paddingLeft: '7%',
     borderRadius: 25,
-    backgroundColor: '#258699',
-    color: '#ffffff',
+    backgroundColor: '#ecf0f1',
+    color: '#292f34',
     fontSize: 20,
     fontWeight: 'bold',
+    elevation: 5,
   },
   details: {
     aspectRatio: 2, //275/135 or 55/27
@@ -152,11 +156,11 @@ const styles = StyleSheet.create({
     paddingLeft: '7%',
     paddingTop: '5%',
     borderRadius: 25,
-
+    elevation: 5,
     textAlignVertical: 'top',
-
-    backgroundColor: '#258699',
-    color: '#ffffff',
+    elevation: 5,
+    backgroundColor: '#ecf0f1',
+    color: '#292f34',
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -164,57 +168,18 @@ const styles = StyleSheet.create({
     aspectRatio: 5, //250/50 or 5/1
     width: '76%',
     marginHorizontal: '12%',
-
+    
+    elevation: 5,
     justifyContent: 'center',
-
     borderRadius: 25,
-    backgroundColor: '#258699',
+    backgroundColor: '#ecf0f1',
+    
   },
   nextText: {
     textAlign: 'center',
-    color: '#ffffff',
+    color: '#292f34',
     fontSize: 20,
     fontWeight: 'bold',
   },
-  addCard: {
-    width: '86%',
-    margin: '7%',
-    aspectRatio: 1,
-    zIndex: 1,
-    position: 'absolute', // removing abosulute pushes content down
-    top: 150,
-    backgroundColor: 'red',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    
-    
-  },
-  createButton: {
-    marginLeft: '10%',
-    marginTop: "10%",
-    width: '80%',
-    aspectRatio: 5,
-    borderRadius: 50,
-    borderWidth: 2,
-    borderColor: 'black',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18
-  },
-  textInput: {
-    marginLeft: '10%',
-    marginTop: '5%',
-    borderRadius: 30,
-    aspectRatio: 5,
-    width: '80%',
-    fontSize: 18,
-    fontWeight: 'bold',
-    backgroundColor: 'grey',
-    textAlign: 'center',
-
-  }
+  
 });

@@ -57,14 +57,14 @@ export default function LoginScreen({ navigation }){
       return (
         <View style={styles.container}>
           <View style={styles.login}>
-            <Text style={styles.inputLabel}>Email</Text>
+            <Text style={styles.label}>Email</Text>
             <TextInput 
             style={styles.input}
             placeholder={'example@gmail.com'}
             placeholderTextColor='white'
             onChangeText = {setEmailInput}
             />
-            <Text style={styles.inputLabel}>Password</Text>
+            <Text style={styles.label}>Password</Text>
             <TextInput 
             style={styles.input}
             placeholder='********'
@@ -81,9 +81,9 @@ export default function LoginScreen({ navigation }){
               </TouchableOpacity>
               
             <View style={styles.register}>
-              <Text style={styles.registerText}>Not a member?</Text>
+              <Text style={styles.label}>Not a member?</Text>
               <TouchableOpacity 
-                style={styles.button}
+                style={[styles.button, {marginBottom:30}]}
                 onPress={()=>navigation.navigate('Register')}
                 >
                 <Text style={styles.buttonText}>Register</Text>          
@@ -102,38 +102,50 @@ export default function LoginScreen({ navigation }){
             flex: 1,
             paddingTop: 50,
             alignItems: 'center',
+            backgroundColor: '#ecf0f1'
           },
-          inputLabel: {
-            marginLeft: 10,
+          login: {
+            marginTop: '20%',
+            alignItems: 'center',
+            width: '100%'
+          },
+          label: {
+            marginBottom: 10
+            
           },
           input: {
-            backgroundColor: '#258699',
+            backgroundColor: '#292f34',
             borderRadius: 30,
             marginBottom: 20,
-            height: 40,
-            width: 300,
+            aspectRatio: 5.5,
+            width: '75%',
             padding: 5,
             textAlign: 'center',
+            elevation: 5,
           },
           button: {
-            width: 200,
-            height: 40,
-            backgroundColor: '#258699',
+            width: '55%',
+            aspectRatio: 4.2,
+            backgroundColor: '#010b13',
             padding: 10,
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 30,
+            elevation: 5,
             
           },
           buttonText: {
-            color: 'white',
+            color: '#ecf0f1',
             fontWeight: 'bold',
             fontSize: 16
           },
           registerText: {
-            marginLeft: 15
+            marginBottom: 10
           },
           register: {
-            marginTop: '50%'
+            alignItems: 'center',
+            position: 'absolute',
+            bottom: '5%',
+            width: '100%'
           },
     })
