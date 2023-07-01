@@ -6,10 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Reports() {
     const navigation = useNavigation();
-
     const db = SQLite.openDatabase('payment.db');
     const [items, setItems] = useState([]);
 
+    {/* RUN ON LOAD */}
     useEffect(()=>{
         db.transaction(tx => {
           tx.executeSql('SELECT * FROM pay', null, 
@@ -24,9 +24,9 @@ export default function Reports() {
     }, []);
 
     const showItems = () => {
-        const [modalVisible, setModalVisible] = useState(false);
+        const [modalVisible, setModalVisible] = useState(false); // MODAL FOR REPORTS POPUP
     
-        return items.map((items) => {
+        return items.map((items) => { // LOOP THROUGH ITEMS ARRAY
             return (
                 <View>
                     <Modal
@@ -67,21 +67,20 @@ export default function Reports() {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Details</Text>
-
             <View style={styles.myDiv}>
                 <ScrollView contentContainerStyle={styles.scrollDiv}>
                     {/* scrollable content */}
                     {showItems()}
                 </ScrollView>
             </View>
-
             <TouchableOpacity style={styles.myButton} onPress={()=>navigation.navigate('Reports-More')}>
                 <Text style={styles.viewMore}>View More</Text>
             </TouchableOpacity>
         </View>
     );
 }
-    
+
+// STYLESHEET
 const styles = StyleSheet.create({
     container: {
         margin: 25,

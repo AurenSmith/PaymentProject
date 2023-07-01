@@ -3,7 +3,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
-
 // assets or other files
 import { styles } from "../Style";
 import Sidebar from '../components/Sidebar';
@@ -11,6 +10,7 @@ import Reports from "../components/Reports";
 
 
 export default function HomeScreen() {
+  // LIVE CHAT AND SIDEBAR
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   
@@ -32,20 +32,18 @@ export default function HomeScreen() {
   
 
   return (
+    
     <ScrollView contentContainerStyle={styles.container}>
-      {/* header */}
+      {/* HEADER FOR BUTTONS */}
       <View style={styles.header}>
-        {/* open side bar button */}
+        {/* OPEN SIDEBAR BUTTON*/}
         <TouchableOpacity style={styles.sidebarButton} onPress={sidebarOpen}></TouchableOpacity>
-        {/* <MyButton onPress={sidebarOpen} /> */}
-
-        {/* open live chat button */}
+        {/* OPEN LIVE CHAT BUTTON */}
         <TouchableOpacity style={styles.liveButton} onPress={handleLiveChatButtonPress}></TouchableOpacity>
-        {/* <LiveChatButton onPress={handleLiveChatButtonPress} /> */}
-
-        
       </View>
+      {/* IMPORT REPORTS COMPONENT */}
       <Reports />
+      {/* CONTAINER FOR BUTTONS */}
       <View style={local.buttonContainer}>
         <TouchableOpacity style={local.button}>
           <Text style={local.buttonText}>Other</Text>
@@ -57,13 +55,11 @@ export default function HomeScreen() {
               <Text style={local.buttonText}>Generate Report</Text>
             </TouchableOpacity>
           </View>
-
       </View>
-
+      {/* INLINE && */}
       {showSidebar &&(
         <Sidebar onClose={sidebarClose}/>
       )}
-
       {/* live chat asset */}
       {showLiveChat && (
         <View 
@@ -78,15 +74,12 @@ export default function HomeScreen() {
           <TouchableOpacity onPress={handleLiveChatClose} style={styles.liveChatCloseButton}>
             <FontAwesome name="times-circle-o" size={28} style={styles.liveChatCloseButtonText} />
           </TouchableOpacity>
-
           {/* top bar */}
           <View style={styles.liveTopbar}></View>
-
           {/* middle content section */}
           <View style={styles.liveContent}>
             <Text style={styles.liveChatText}>Live Chat Content</Text>
           </View>
-
           {/* bottom bar */}
           <View style={styles.liveBottombar}>
             <Text style={styles.liveMessage}>Message</Text>
@@ -96,12 +89,13 @@ export default function HomeScreen() {
           </View>
         </View>
       )}
-
       <StatusBar style="auto" />
     </ScrollView>
   );
 }
 
+
+// STYLE SHEET FOR REPORTS MORE SCREEN, REUSED COMPONENTS USE THE GLOBAL STYLESHEET
 const local = StyleSheet.create({
     orders: {
         marginTop: 50,
