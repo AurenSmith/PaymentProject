@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     orderContainer: {
-        height: '40%',
+        height: 300,
         width: '80%',
         borderRadius: 30,
         backgroundColor: 'white',

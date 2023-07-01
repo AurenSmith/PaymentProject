@@ -1,18 +1,30 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import CardAsset from '../CardAsset';
 
 
 export default function Payment() {
   const navigation = useNavigation();
+  const [isOpen, setOpen] = useState(false);
+
+  
+
+
+
+
+  const handleExpand = () => {
+      setOpen(!isOpen);
+  }
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
+      <View style={styles.card} onPress={handleExpand}>
         <TouchableOpacity style={styles.swapButton}>
           <Text style={styles.swapText}>Swap Card</Text>
         </TouchableOpacity>
       </View>
-
+      <View>
       <Text style={styles.textTag}>Amount</Text>
       <TextInput style={styles.amount} placeholder="$0.00" placeholderTextColor="#ffffff"></TextInput>
 
@@ -25,6 +37,13 @@ export default function Payment() {
       <TouchableOpacity style={styles.next} onPress={()=>navigation.navigate('Next')}>
         <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
+
+      </View>
+      
+      
+
+      
+      
     </View>
   );
 }
@@ -36,18 +55,17 @@ const styles = StyleSheet.create({
     paddingBottom: '7%',
     margin: '7%',
     borderRadius: 20,
-
     backgroundColor: '#ffffff',
-
+    flexGrow: 1,
     textAlignVertical: 'center',
   },
   card: {
     aspectRatio: 1.774193548387097, //275/155 or 55/31
     width: '86%',
     margin: '7%',
-
     borderRadius: 20,
     backgroundColor: '#258699',
+    
   },
   swapButton: {
     position: 'absolute',
@@ -72,7 +90,6 @@ const styles = StyleSheet.create({
     aspectRatio: 15, //275/14 or 55/2
     width: '86%',
     marginLeft: '14%',
-
     color: '#737373',
     fontWeight: 'bold',
     fontSize: 14,
@@ -84,7 +101,6 @@ const styles = StyleSheet.create({
     marginBottom: '7%',
     paddingLeft: '7%',
     borderRadius: 25,
-
     backgroundColor: '#258699',
     color: '#ffffff',
     fontSize: 20,
@@ -122,4 +138,45 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  addCard: {
+    width: '86%',
+    margin: '7%',
+    aspectRatio: 1,
+    zIndex: 1,
+    position: 'absolute', // removing abosulute pushes content down
+    top: 150,
+    backgroundColor: 'red',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    
+    
+  },
+  createButton: {
+    marginLeft: '10%',
+    marginTop: "10%",
+    width: '80%',
+    aspectRatio: 5,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18
+  },
+  textInput: {
+    marginLeft: '10%',
+    marginTop: '5%',
+    borderRadius: 30,
+    aspectRatio: 5,
+    width: '80%',
+    fontSize: 18,
+    fontWeight: 'bold',
+    backgroundColor: 'grey',
+    textAlign: 'center',
+
+  }
 });

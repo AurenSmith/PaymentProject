@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+
 
 // assets or other files
 import { styles } from "../Style";
@@ -12,7 +13,14 @@ import Payment from '../components/Payment';
 import Reports from '../components/Reports';
 
 
+
+
 export default function HomeScreen() {
+
+  
+
+
+
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -23,7 +31,7 @@ export default function HomeScreen() {
   const sidebarClose = () => {
     setShowSidebar(false);
   };
-
+  
   const handleLiveChatButtonPress = () => {
     setShowLiveChat(true);
   };
@@ -50,8 +58,10 @@ export default function HomeScreen() {
         <View style={styles.myCard}>
           <CardAsset />
         </View>
-
-        <Payment />
+        <View style={styles.payment}>
+          <Payment />
+        </View>
+        
 
         <Reports />
         
