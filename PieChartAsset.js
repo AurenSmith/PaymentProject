@@ -9,10 +9,10 @@ export default function PieChartAsset() {
             <PieChart
           widthAndHeight={150}
           series={[62.5, 37.5]}
-          sliceColor={['#F76077', '#FDAA98']}
+          sliceColor={['#010b13', '#292f34']}
           coverFill={null}
           coverRadius={0.65}
-          style={{transform: [{rotate: '120deg'}],}}
+          style={{transform: [{rotate: '120deg'}]}}
           />
           <View style={styles.pieInner}>
             <Text style={styles.percentage}>62.5%</Text>

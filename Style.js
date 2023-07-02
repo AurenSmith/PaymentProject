@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#D9D9D9',
+    backgroundColor: '#ecf0f1',
     justifyContent: 'flex-start',
   },
   header: {
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     height: 61,
     backgroundColor: 'black',
     borderRadius: 20,
+    elevation: 5
   },
   sidebar: {
     position: 'absolute',
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     height: 61,
     backgroundColor: 'black',
     borderRadius: 20,
+    elevation: 5
   },
   liveChat: {
     position: 'absolute',
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     left: 23,
     height: 400,
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#ecf0f1',
     zIndex: 1,
   },
   liveContent: {
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
   },
   liveChatText: {
     position: 'relative',
-    color: 'black',
+    color: '#292f34',
     fontSize: 20,
     marginBottom: 20,
   },
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
 
-    backgroundColor: 'black',
+    backgroundColor: '#292f34',
     borderTopRightRadius: 20,
     width: 61,
     height: 61,
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   liveChatCloseButtonText: {
-    color: '#FFFFFF',
+    color: '#ecf0f1',
     fontWeight: 400,
     position: 'absolute',
     width: 28,
@@ -89,9 +91,9 @@ const styles = StyleSheet.create({
     height: 61,
     borderTopLeftRadius: 20,  
     borderBottomWidth: 1,
-    borderBottomColor: '#B0B0B0',
+    borderBottomColor: '#292f34',
 
-    backgroundColor: 'white',
+    backgroundColor: '#ecf0f1',
   },
   liveBottombar: {
     position: 'absolute',
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
 
-    backgroundColor: '#258699',
+    backgroundColor: '#292f34',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     height: 61,
 
     fontSize: 20,
-    color: 'black',
+    color: '#ecf0f1',
     marginLeft: 10,
     marginTop: 4,
   },
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   },
   liveSend: {
     textAlign: 'center',
-    color: 'black',
+    color: '#ecf0f1',
   },
   cards: {
     position: 'absolute',

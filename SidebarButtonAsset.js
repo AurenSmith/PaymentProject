@@ -21,5 +21,6 @@ const SideBarButton = ({ onPress }) => {
         height: 61,
         backgroundColor: 'pink',
         borderRadius: 20,
+        elevation: 5
       },
   })
