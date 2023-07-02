@@ -3,7 +3,7 @@ import { StyleSheet, Text, View} from 'react-native';
 import PieChart from 'react-native-pie-chart';
 
 
-export default function PieChartAsset() {
+export default function PieChartAsset(percent) {
     return (
         <View>
             <PieChart

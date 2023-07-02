@@ -52,11 +52,13 @@ export default function CardAsset() {
     });
   }
 
+
   const [active, setActive] = useState(false);
 
   const handleActive = () => {
       setActive(!active);
   }
+
 
   var testNumber;
   var testName;

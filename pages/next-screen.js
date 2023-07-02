@@ -1,28 +1,29 @@
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 import PieChartAsset from '../PieChartAsset';
 import { useNavigation } from '@react-navigation/native';
 import * as SQLite from 'expo-sqlite';
 import { useState, useEffect } from 'react';
 
 function NextScreen() {
-  const db = SQLite.openDatabase('payment.db');
+  const db = SQLite.openDatabase('payment.db'); // OPEN DATABASE 
   const navigation = useNavigation();
-
   const [items, setItems] = useState([]);
 
+  {/* RUN ON LOAD */}
   useEffect(()=>{
     db.transaction(tx => {
-      tx.executeSql('SELECT * FROM pay', null, 
-        (txObj, resultSet) => setItems(resultSet.rows._array),
-        (txObj, error) => console.log(error)
+      tx.executeSql('SELECT * FROM pay', null,  // RETRIEVE PAYMENTS FROM DATABASE
+        (txObj, resultSet) => setItems(resultSet.rows._array), // SET TO ARRAY
+        (txObj, error) => console.log(error) // LOG ERROR
       );
     });
   }, []);
 
+  {/* VARIABLES FOR PAYMENT REPORTS */}
   var myAmount;
   var myDetails;
   var myName;
-  items.map((item)=>{
+  items.map((item)=>{ // LOOP THROUGH ITEMS ARRAY
     myAmount = item.amount;
     myDetails = item.details;
     myName = item.name;
@@ -38,12 +39,16 @@ function NextScreen() {
     navigation.replace('HomeScreen');
   }
 
+  const handleCancel = () => {
+
+  }
+
   return (
     <View style={styles.container}>
       <View  style={{flexDirection: 'row'}}>
-        <PieChartAsset />
+        <PieChartAsset  />
         <View style={styles.square}>
-          <Text style={styles.nextAmountDollars}>{myAmount}</Text>
+          <Text style={styles.nextAmountDollars}>{'$' + myAmount}</Text>
           <Text style={styles.nextAmountPercentage}>-0.00%</Text>
         </View>
       </View>
@@ -60,7 +65,7 @@ function NextScreen() {
         </TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', marginTop: 20}}>
-        <TouchableOpacity style={styles.buttonSquare}>
+        <TouchableOpacity style={styles.buttonSquare} onPress={()=>Alert.alert('Exported', 'Purchase Exported')}>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonLarge} onPress={generatePurchase}>
           <Text style={styles.buttonText}>Generate Purchase</Text>
