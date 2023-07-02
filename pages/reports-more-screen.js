@@ -78,7 +78,15 @@ export default function HomeScreen() {
           <View style={styles.liveTopbar}></View>
           {/* middle content section */}
           <View style={styles.liveContent}>
-            <Text style={styles.liveChatText}>Live Chat Content</Text>
+          <View style={styles.message}>
+              <Text style={styles.messageText}>i want add a new card</Text>
+              </View>
+              <View style={[styles.message, {left: 10, bottom: 80, backgroundColor: '#ecf0f1'}]}>
+                <Text style={[styles.messageText, {color: '#292f34'}]}>Yes of course, how can we help?</Text>
+              </View>
+              <View style={[styles.message, {bottom: 160}]}>
+                <Text style={styles.messageText}>Hello can you please help me?</Text>
+              </View>
           </View>
           {/* bottom bar */}
           <View style={styles.liveBottombar}>

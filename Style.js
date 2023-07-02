@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#ecf0f1',
     zIndex: 1,
+    elevation: 10
   },
   liveContent: {
     position: 'absolute',
@@ -177,6 +178,23 @@ const styles = StyleSheet.create({
     right: 25,
     backgroundColor: '#737373',
     borderRadius: 20,
+  },
+  message: {
+    width: 150,
+    height: 50,
+    borderWidth: 1,
+    borderRadius: 15,
+    backgroundColor: '#292f34',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    elevation: 10
+  },
+  messageText: {
+    alignSelf: 'flex-end',
+    paddingRight: 10,
+    color: '#ecf0f1'
   }
 });
 
