@@ -75,13 +75,7 @@ export default function Payment() {
       <TouchableOpacity style={styles.next} onPress={handleNext}>
         <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
-
       </View>
-      
-      
-
-      
-      
     </View>
   );
 }
