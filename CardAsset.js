@@ -58,7 +58,7 @@ export default function CardAsset() {
         card
       </Text>
       <View style={styles.details}>
-        <Text style={styles.cardNo}>1234 1234 1234 1234</Text>
+        <Text style={styles.cardNo}>{cardNumber}</Text>
         <Text style={styles.expText}>VALID THRU</Text>
         <Text style={styles.date}>12/12</Text>
         <Text style={styles.name}>JOHN DOE</Text>

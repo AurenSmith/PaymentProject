@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView,  } from 'react-native';
 import { useState, useRef } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -15,8 +15,19 @@ import Reports from '../components/Reports';
 
 
 
-export default function HomeScreen() {
+export default function HomeScreen({route, navigation}) {
 
+  // for scrolling sidebar buttons
+  const value = route.params;
+  const refScrollView = useRef();
+  const moveTo = () => {
+    refScrollView.current.scrollTo({y:value});
+  }
+
+  // run on load
+  useEffect(()=>{
+    moveTo();
+  },[])
   
 
 
@@ -42,7 +53,9 @@ export default function HomeScreen() {
 
   return (
     <View>
-      <ScrollView contentContainerStyle={styles.container}>
+      <View>
+      </View>
+      <ScrollView contentContainerStyle={styles.container} ref={refScrollView}>
         {/* header */}
         <View style={styles.header}>
           {/* open side bar button */}
@@ -53,7 +66,7 @@ export default function HomeScreen() {
           <TouchableOpacity style={styles.liveButton} onPress={handleLiveChatButtonPress}></TouchableOpacity>
           {/* <LiveChatButton onPress={handleLiveChatButtonPress} /> */}
         </View>
-
+        
         {/* card asset */}
         <View style={styles.myCard}>
           <CardAsset />
@@ -107,4 +120,6 @@ export default function HomeScreen() {
       </ScrollView>
     </View>
   );
+
+
 }

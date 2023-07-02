@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, PanResponder } from 'react-na
 import { useState, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+
 export default function Sidebar({ onClose }) {
   const navigation = useNavigation();
   const [press, setPress] = useState(false);
@@ -37,13 +38,13 @@ export default function Sidebar({ onClose }) {
       <TouchableOpacity style={styles.buttons} onPress={HandlePress}>
         <Text style={styles.buttonText}>Cart</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
+      <TouchableOpacity style={styles.buttons} onPress={()=>navigation.replace('HomeScreen',100)}>
         <Text style={styles.buttonText}>Wallet</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
+      <TouchableOpacity style={styles.buttons} onPress={()=>navigation.replace('HomeScreen',420)}>
         <Text style={styles.buttonText}>Payments</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
+      <TouchableOpacity style={styles.buttons} onPress={()=>navigation.replace('HomeScreen',1000)}>
         <Text style={styles.buttonText}>Reports</Text>
       </TouchableOpacity>
     </View>
